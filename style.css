@@ -1,4 +1,33 @@
-h1{
-    background-color: green;
-    color: white;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --dark: #1F2937;
+    --light: #ffff;
+    --shade: #E5E7EB;
+}
+
+
+section {
+    min-height: 300px;
+}
+
+#header {
+    background-color: var(--dark);
+    height: 500px;
+}
+
+#information {
+    background-color: var(--light);
+}
+
+#quote {
+    background-color: var(--shade);
+}
+
+#footer {
+    background-color: var(--light);
 }
