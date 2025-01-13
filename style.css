@@ -142,6 +142,7 @@ nav>div {
 
 .box p {
     margin: 0;
+    padding: 0px 10px;
     color: #333;
     font-size: 16px;
     text-align: center;
@@ -163,6 +164,7 @@ nav>div {
 
 #speaker {
     text-align: end;
+    font-weight: 900;
 }
 
 #footer {
@@ -192,4 +194,44 @@ nav>div {
     padding: 8px 15px;
     border-radius: 5px;
     color: var(--light);
+}
+
+
+
+@media only screen and (max-width: 768px) {
+    nav{
+        flex-direction: column;
+        gap: 20px;
+    }
+    #hero-sec {
+        flex-direction: column;
+    }
+    #hero-sec>div {
+        width: 100%;
+        
+    }
+    #hero-img {
+        order: 1;
+        
+    }
+    #hero-info {
+        order: 2;
+        
+    }
+    #quote>div {
+        padding: 150px 0px;
+    }
+    #quote>div>p {
+        font-size: 22px;
+        padding: 5px 0px;
+    }
+
+    #footer-container{
+        flex-direction: column;
+        padding: 15px 20px;
+        gap: 10px;
+    }
+    #footer-container div{
+        width: 100%;
+    }
 }
