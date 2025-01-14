@@ -18,6 +18,18 @@
 section {
     min-height: 300px;
     padding: 0px 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+.max-container {
+    width: 100%;
+    max-width: 1500px;
+    /* background-color: red; */
+
 }
 
 #header {
@@ -63,7 +75,7 @@ nav>div {
     margin-top: 100px;
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 100px;
 }
 
 #hero-sec>div {
@@ -198,40 +210,50 @@ nav>div {
 
 
 
+
 @media only screen and (max-width: 768px) {
-    nav{
+
+    nav {
         flex-direction: column;
         gap: 20px;
     }
+
     #hero-sec {
         flex-direction: column;
+        gap: 30px;
     }
+
     #hero-sec>div {
         width: 100%;
-        
+
     }
+
     #hero-img {
         order: 1;
-        
+
     }
+
     #hero-info {
         order: 2;
-        
+
     }
+
     #quote>div {
         padding: 150px 0px;
     }
+
     #quote>div>p {
         font-size: 22px;
         padding: 5px 0px;
     }
 
-    #footer-container{
+    #footer-container {
         flex-direction: column;
         padding: 15px 20px;
         gap: 10px;
     }
-    #footer-container div{
+
+    #footer-container div {
         width: 100%;
     }
 }
