@@ -1,12 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Js Assignment</title>
 </head>
+
 <body>
-    <h1>hellow js</h1>
+    <header>
+        <nav>
+            <div id="logo-box">
+                <a href="#">Logo</a>
+            </div>
+            <div id="ham-box">
+                <img id="ham-icon" src="./media/icons/bars-solid.svg" alt="">
+            </div>
+            <div id="menu-box">
+
+                <div id="options-box">
+                    <div id="search">
+                        <img src="./media/icons/search.png" alt="">
+                        <p> Search </p>
+                    </div>
+                    <div id="sign-in">
+                        <img src="./media/icons/account_circle.png" alt="">
+                        <p> Sign in </p>
+
+                    </div>
+                    <div id="cart">
+                        <img src="./media/icons/shopping_bag.png" alt="">
+                        <p>(0)</p>
+
+                    </div>
+                </div>
+
+                <div id="item-box">
+                    <a class="menu-link" href="#">Classes</a>
+                    <a class="menu-link" href="#">Programs & Events</a>
+                    <a class="menu-link" href="#">Blogs</a>
+                    <a class="menu-link" href="#">About</a>
+                    <a class="menu-link" href="#">Get Involved</a>
+                    <a class="menu-link" id="active" href="#">Find a Class</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <section id="main-body">
+        <div id="hero-section">
+            <div id="hero-top-wraper">
+                <div id="hero-title-box">title</div>
+                <div id="hero-stats-box">stats</div>
+            </div>
+            <div id="hero-bottom-box">bottom</div>
+        </div>
+    </section>
+
+
+    <script>
+        let menuBox = document.getElementById("menu-box");
+        let hamButton = document.getElementById("ham-icon")
+        let links = document.querySelectorAll(".menu-link");
+        let toggle = "none";
+
+        links.forEach(link => {
+            link.addEventListener("click", () => {
+                toggle = "none"
+                console.log(0)
+                menuBox.style.display = toggle
+            });
+        });
+
+        hamButton.addEventListener("click", () => {
+            if (toggle == "none") {
+                toggle = "block"
+            }
+            else {
+                toggle = "none"
+            }
+
+            menuBox.style.display = toggle
+        })
+    </script>
 </body>
+
 </html>

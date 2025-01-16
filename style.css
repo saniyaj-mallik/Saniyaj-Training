@@ -1,5 +1,160 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+:root {
+    --light: #FFFFFF;
+    --gray: #ECECEC;
+    --deep-gray: #D9D9D9;
+    --black: #434343;
+    --red: #DC3636;
+
+    --fnt-large: 32px;
+    --fnt-md: 18px;
+}
+
+header {
+    background-color: var(--light);
+    position: sticky;
+    top: 0;
+    left: 0;
+}
+
+nav {
+    margin-inline: auto;
+    max-width: 1440px;
+    /* min-height: 150px; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 21px 10px;
+    /* border: 1px solid red; */
+}
+
+#logo-box {
+    padding: 15px 40px;
+    /* background-color: var(--deep-gray); */
+    border-radius: 5px;
+}
+
+#logo-box a {
+    color: var(--black);
+    font-size: var(--fnt-large);
+}
+
+#menu-box {
+    display: flex;
+    gap: 20px;
+    /* border: 1px solid red; */
+    flex-direction: column;
+    height: 100%;
+    min-width: 70%;
+    transition: all 0.5s;
+}
+
+#ham-box {
+    display: none;
+    position: fixed;
+    right: 30px;
+    top: 35px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+#ham-line {
+    height: 5px;
+    width: 100%;
+    background-color: var(--black);
+}
+
+#options-box {
+    display: flex;
+    justify-content: end;
+}
+
+#options-box>div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+}
+
+#item-box {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+#item-box a {
+    font-size: var(--fnt-md);
+    padding: 8px 24px;
+    color: var(--black);
+}
+
+#active {
+    background-color: var(--red);
+    border-radius: 28px;
+    color: var(--light) !important;
+}
+
+#main-body {
+    background-color: var(--gray);
+    padding: 39px 0px;
+    min-height: 20000px;
+}
+
+#hero-section {
+    max-width: 1125px;
+    margin-inline: auto;
+}
+
+#hero-top-wraper {
+    display: flex;
+}
+
+#hero-title-box {
+    width: 70%;
+    display: flex;
+}
+
+#hero-stats-box {
+    width: 30%;
+    display: flex;
+}
+
+#hero-bottom-box {
+    border: 1px solid red;
+}
+
+@media only screen and (max-width: 922px) {
+
+    nav {
+        flex-direction: column;
+    }
+
+    #menu-box {
+        width: 100%;
+        display: none;
+    }
+
+    #ham-box {
+        display: block;
+    }
+
+    #options-box {
+        justify-content: center;
+    }
+
+    #item-box {
+        flex-direction: column;
+    }
 }
