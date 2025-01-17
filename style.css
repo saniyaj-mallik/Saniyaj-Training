@@ -14,6 +14,8 @@ a {
     --deep-gray: #D9D9D9;
     --black: #434343;
     --red: #DC3636;
+    --orange: #f39b4e;
+    --light-orange: #fdf0e5;
 
     --fnt-large: 32px;
     --fnt-md: 18px;
@@ -158,11 +160,11 @@ nav {
 }
 
 #cat-2 {
-    background-color: rgb(237, 147, 147);
+    background-color: #f8d7d7;
 }
 
 #cat-3 {
-    background-color: var(--deep-gray);
+    background-color: #b4b4b4;
 }
 
 #hero-stats-box {
@@ -270,9 +272,7 @@ nav {
     flex-direction: column;
     align-items: center;
     padding: 20px 38px;
-    background: linear-gradient(0deg, #F39B4E, #F39B4E),
-        linear-gradient(0deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85));
-    ;
+   background-color: var(--light-orange);
 }
 
 #main-contant-aside img {
@@ -459,52 +459,63 @@ footer {
     padding: 20px 40px;
 }
 
-.footer-rows{
+.footer-rows {
     display: flex;
     justify-content: space-between;
     align-items: end;
     color: var(--light);
     margin: 20px 0px;
 }
-.footer-rows p{
+
+.footer-rows p {
     font-size: 15px;
     line-height: 28px;
     padding: 12px 0px;
 }
-.footer-rows h4{
+
+.footer-rows h4 {
     font-size: 21px;
     line-height: 28px;
 }
-.footer-rows span{
-   color: var(--red);
+
+.footer-rows span {
+    color: var(--orange);
 }
-#footer-social-icons{
+
+#footer-social-icons {
     display: flex;
     gap: 10px;
 }
-#subscribe-form{
+
+#subscribe-form {
     margin-top: 10px;
     height: 52px;
     border: 2px solid var(--light);
     border-radius: 30px;
     background-color: var(--light);
 }
-#subscribe-form input{
+
+#subscribe-form input {
     height: 100%;
     padding-left: 19px;
     outline: none;
     background: transparent;
     border: none;
 }
-#subscribe-form button{
+
+#subscribe-form button {
     border-radius: 30px;
     height: 100%;
     width: 112px;
     outline: none;
-    background-color: var(--red);
+    background-color: var(--orange);
     border: none;
 }
 
+#active-social-icon{
+    background-color: var(--orange);
+    border-radius: 50%;
+}
 
 
 
@@ -587,7 +598,7 @@ footer {
         justify-content: center;
         align-items: center;
         gap: 0px;
-        /* padding-inline: 10px; */
+        padding-inline: 40px;
     }
 
     #main-contant {
@@ -616,11 +627,9 @@ footer {
         gap: 30px;
     }
 
-    /* #remote-class-info{
-        padding: 70px 10px;
-        
-    
-    } */
+    #remote-class-info p{
+text-align: left;
+    }
 
     #remote-class-info div {
         flex-direction: column;
@@ -634,13 +643,20 @@ footer {
 
     #policy-wrapper {
         flex-direction: column;
+        text-align: left;
     }
-    .footer-rows{
-       flex-direction: column;
-       align-items: center;
+    #policy-box p{
+        text-align: left;
     }
-    .footer-rows h4,p{
-       text-align: center;
+
+    .footer-rows {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-rows h4,
+    p {
+        text-align: center;
     }
 
 }
