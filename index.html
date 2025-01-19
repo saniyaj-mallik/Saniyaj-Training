@@ -11,7 +11,7 @@
 <body>
     <header>
         <nav>
-            <div id="logo-box">
+            <div id="logo-box" class="pt-sans-bold">
                 <a href="#">Logo</a>
             </div>
             <div id="ham-box">
@@ -36,7 +36,7 @@
                     </div>
                 </div>
 
-                <div id="item-box">
+                <div id="item-box" class="pt-sans-bold">
                     <a class="menu-link" href="#">Classes</a>
                     <a class="menu-link" href="#">Programs & Events</a>
                     <a class="menu-link" href="#">Blogs</a>
@@ -53,8 +53,8 @@
         <div id="hero-section">
             <div id="hero-top-wraper">
                 <div id="hero-title-box">
-                    <h2>Let's Begin Here: Approaching <br> Craft in Fiction Through Character</h2>
-                    <div id="title-cat-box">
+                    <h2 class="montserrat">Let's Begin Here: Approaching <br> Craft in Fiction Through Character</h2>
+                    <div id="title-cat-box" class="pt-sans-bold">
                         <div id="cat-1">
                             <img src="./media/icons/devid.png" alt="">
                             <p>David William Hill</p>
@@ -67,19 +67,19 @@
                     <div id="stat-top">
                         <div id="menber-info-box">
                             <div style="border-right: 1px solid var(--black);">
-                                <p class="member-price">$200</p>
+                                <p class="member-price pt-sans-bold">$200</p>
                                 <p>Member</p>
                             </div>
                             <div>
-                                <p class="member-price">$259</p>
+                                <p class="member-price pt-sans-bold">$259</p>
                                 <p>Non-Member</p>
                             </div>
                         </div>
-                        <button id="sign-up-btn">
+                        <button id="sign-up-btn" class="pt-sans-bold">
                             Sign Up
                         </button>
                     </div>
-                    <button id="stat-bottom">
+                    <button id="stat-bottom" class="pt-sans-bold">
                         Apply for Reduced-Rate Spot
                     </button>
                 </div>
@@ -150,7 +150,7 @@
                     <img src="./media//icons/social4.png" alt="">
                 </div>
                 <hr>
-                <h2 id="class-schedule">
+                <h2 id="class-schedule" class="montserrat">
                     Class Schedule
                 </h2>
                 <p id="class-time">
@@ -193,12 +193,26 @@
 
 
         <div id="slider-box">
-            slider
+
+            <div id="container">
+                <img id="left-arrow" src="./media/icons/left-arrow.png" alt="Left Arrow">
+                <!-- Frame -->
+                <div id="frame">
+                    <!-- Slide -->
+                    <div class="slide">
+                        <img src="./media/images/slide.png" alt="Slide 1">
+                        <img src="./media/images/slide.png" alt="Slide 2">
+                        <img src="./media/images/slide.png" alt="Slide 3">
+                    </div>
+                </div>
+                <img id="right-arrow" src="./media/icons/right-arrow.png" alt="Right Arrow">
+            </div>
+
         </div>
 
 
         <div id="similar-classes-box">
-            <h2>Similar Classes</h2>
+            <h2 class="montserrat">Similar Classes</h2>
             <div id="learn-more-container">
                 <div id="learn-more-box">
                     <p>The Art of the Prose Sentence: Challenging Your Sentences to Do More</p>
@@ -220,13 +234,14 @@
     <section id="bottom-information-section">
         <div id="bottom-info-wraper">
             <div id="remote-class-info">
-                <h2>About the Remote Classes</h2>
+                <h2 class="montserrat">About the Remote Classes</h2>
                 <p>You will be able to participate in live class meetings via Zoom videoconference. To attend classes,
                     you'll need a phone, tablet or computer and access to the internet. You can participate in the class
                     from wherever you'd like, whether on your living room couch or in your office. Before your class
                     meets, you'll receive an email from The Proprietary with more information about Zoom and your remote
                     class. If you have any questions about remote learning, please don't hesitate to reach out to us at
-                    <span style="color: #00acb4;">hello@wisdmlabs.com.</span></p>
+                    <span style="color: #00acb4;">hello@wisdmlabs.com.</span>
+                </p>
                 <div>
                     <a href="">Learn About Our Classes ></a>
                     <a href="">Questions? See FAQ ></a>
@@ -234,7 +249,7 @@
             </div>
             <div id="policy-box">
                 <hr>
-                <h2>Cancelation Policy</h2>
+                <h2 class="montserrat">Cancelation Policy</h2>
                 <p>In the event of an emergency, we may consider a refund or credit, whether partial or full. We review
                     these requests on a case-by-case basis, and we ask that you notify us as near as possible to the
                     start date for the class. Please read our policy details before requesting a refund.</p>
@@ -296,7 +311,8 @@
             <div class="footer-rows" id="footer-middle">
                 <div>
                     <h4>Contact</h4>
-                    <p><span>2035 Sunset Lake Road, Suite B-2, Newark, Delaware, 19702</span> <br> <span>Office Phone:</span> (510) 987-6543
+                    <p><span>2035 Sunset Lake Road, Suite B-2, Newark, Delaware, 19702</span> <br> <span>Office
+                            Phone:</span> (510) 987-6543
                         Email: hello@wisdmlabs.com </p>
                 </div>
                 <div id="footer-social-icons">
@@ -316,32 +332,8 @@
         </div>
     </footer>
 
+<script src="./app.js"></script>
 
-    <script>
-        let menuBox = document.getElementById("menu-box");
-        let hamButton = document.getElementById("ham-icon")
-        let links = document.querySelectorAll(".menu-link");
-        let toggle = "none";
-
-        links.forEach(link => {
-            link.addEventListener("click", () => {
-                toggle = "none"
-                console.log(0)
-                menuBox.style.display = toggle
-            });
-        });
-
-        hamButton.addEventListener("click", () => {
-            if (toggle == "none") {
-                toggle = "block"
-            }
-            else {
-                toggle = "none"
-            }
-
-            menuBox.style.display = toggle
-        })
-    </script>
 </body>
 
 </html>
