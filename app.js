@@ -15,7 +15,6 @@ links.forEach(link => {
     link.addEventListener("click", () => {
         // Hide the menu when a link is clicked
         toggle = "none";
-        console.log(0); // Log a value to the console for debugging
         menuBox.style.display = toggle;
     });
 });
