@@ -8,19 +8,18 @@
     margin: 0;
     box-sizing: border-box;
 }
-
-body {
-    font-family: "PT Sans", serif;
-    font-weight: 400;
-    font-style: normal;
-}
-
 .pt-sans-bold {
     font-weight: 700;
 }
 .montserrat {
     font-family: "Montserrat", serif;
     font-weight: 900;
+}
+
+body {
+    font-family: "PT Sans", serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 a {
