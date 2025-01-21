@@ -1,26 +1,38 @@
+// Get the menu box element by its ID
 let menuBox = document.getElementById("menu-box");
-let hamButton = document.getElementById("ham-icon")
+
+// Get the hamburger icon button element by its ID
+let hamButton = document.getElementById("ham-icon");
+
+// Get all elements with the class "menu-link"
 let links = document.querySelectorAll(".menu-link");
+
+// Variable to toggle the visibility of the menu, default is "none" (hidden)
 let toggle = "none";
 
+// Add a click event listener to each menu link
 links.forEach(link => {
     link.addEventListener("click", () => {
-        toggle = "none"
-        console.log(0)
-        menuBox.style.display = toggle
+        // Hide the menu when a link is clicked
+        toggle = "none";
+        console.log(0); // Log a value to the console for debugging
+        menuBox.style.display = toggle;
     });
 });
 
+// Add a click event listener to the hamburger button
 hamButton.addEventListener("click", () => {
+    // Toggle the menu display between "block" (visible) and "none" (hidden)
     if (toggle == "none") {
-        toggle = "block"
-    }
-    else {
-        toggle = "none"
+        toggle = "block"; // Show the menu
+    } else {
+        toggle = "none"; // Hide the menu
     }
 
-    menuBox.style.display = toggle
-})
+    // Apply the updated display style to the menu box
+    menuBox.style.display = toggle;
+});
+
 
 
 
