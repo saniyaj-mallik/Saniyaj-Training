@@ -43,7 +43,7 @@ hamButton.addEventListener("click", () => {
 const slide = document.querySelector('.slide');
 const leftArrow = document.getElementById('left-arrow');
 const rightArrow = document.getElementById('right-arrow');
-const slides = document.querySelectorAll('.slide img');
+const slides = document.querySelectorAll('.slide div');
 const totalSlides = slides.length;
 
 let currentIndex = 0;

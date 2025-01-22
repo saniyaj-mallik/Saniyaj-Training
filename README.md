@@ -34,4 +34,11 @@
 ![Desktop View](screenshot/ph8.png) 
 ![Desktop View](screenshot/ph9.png) 
 
+
+# Slider Update img to Text slider
+![slider](screenshot/slider-update-4k.png) 
+![slider](screenshot/slider-update-tab.png) 
+![slider](screenshot/slider-update-ph.png) 
+
+
  
