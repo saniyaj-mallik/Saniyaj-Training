@@ -14,15 +14,15 @@ if (!$conn) {
 }
 echo "You are connected<br>";
 
-// SQL query
-$sql = "INSERT INTO user (name, email) VALUES ('saniyaj2', 'sani2@gmail.com')";
+// // SQL query
+// $sql = "INSERT INTO user (name, email) VALUES ('saniyaj2', 'sani2@gmail.com')";
 
-// Execute the query and check for success
-if (mysqli_query($conn, $sql)) {
-    echo "Data inserted successfully";
-} else {
-    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-}
+// // Execute the query and check for success
+// if (mysqli_query($conn, $sql)) {
+//     echo "Data inserted successfully";
+// } else {
+//     echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+// }
 
 // Close the connection
 mysqli_close($conn);

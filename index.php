@@ -2,5 +2,5 @@
 require('db.php');
 
 
-echo "hi bro";
+require('views/index-view.php')
 ?>
