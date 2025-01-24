@@ -2,6 +2,4 @@
 require('functions.php');
 require('db.php');
 
-require('views/index-view.php');
-
-
+require('views/forgot_password-view.php');

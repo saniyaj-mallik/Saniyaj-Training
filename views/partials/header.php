@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?= $heading ?></title>
+
+    <!-- tailwind
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script> -->
+
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            
+            <a class=" <?= urlIs('/training/') ? 'text-blue' : "text-black"  ?>" href="/training">Home</a>
+
+
+            <a class=" <?= urlIs('/training/login.php') ? 'text-blue' : "text-black"  ?>" href="/training/login.php">login</a>
+
+        </nav>
+    </header>
