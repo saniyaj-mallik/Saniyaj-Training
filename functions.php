@@ -1,4 +1,6 @@
 <?php
+require 'db.php';
+$errors = array();
 
 function urlIs($url)
 {

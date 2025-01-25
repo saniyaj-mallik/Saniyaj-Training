@@ -6,7 +6,7 @@ require('partials/header.php');
 <form id="forgotPasswordForm" method="POST">
     <label for="email">Enter your email:</label>
     <input type="email" id="email" name="email" required>
-    <button type="submit">Send Reset Link</button>
+    <input class="" type="submit" name="forgot_pass_btn" value="Send Reset Link">
 </form>
 <a href="login.php">Login</a>
 

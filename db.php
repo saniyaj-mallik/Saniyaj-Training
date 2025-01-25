@@ -6,12 +6,11 @@ $db_pass = 'mypassword';
 $db_name = 'user_auth';
 
 // Establishing the connection
-$conn = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
+$con = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
 
 // Checking the connection
-if (!$conn) {
+if (!$con) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-mysqli_close($conn);
 ?>
