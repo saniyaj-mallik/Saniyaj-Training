@@ -1,12 +1,13 @@
 <?php
-session_start();
-
 require('functions.php');
+if (session_status() == PHP_SESSION_NONE) {
+    session_start(); // Start session only if it's not already started
+}
 
 $heading = "Register page";
 
 $isLoggedIn = isset($_SESSION['email']);
-if($isLoggedIn){
+if ($isLoggedIn) {
     header('location: index.php');
 }
 
@@ -50,8 +51,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $errors['db-error'] = "Failed while inserting data into database!";
         }
     }
-
-
 }
 
 require('views/register-view.php');

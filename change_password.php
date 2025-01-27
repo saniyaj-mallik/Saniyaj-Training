@@ -1,8 +1,14 @@
 <?php
+
 require('functions.php');
 require('db.php');
 
-$heading = 'Forgot Password';
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start(); // Start session only if it's not already started
+}
+
+$heading = 'Change Password';
 $code = '';
 
 if (isset($_GET['code'])) {

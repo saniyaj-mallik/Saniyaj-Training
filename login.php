@@ -1,6 +1,8 @@
 <?php
 require('functions.php');
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start(); // Start session only if it's not already started
+}
 
 $isLoggedIn = isset($_SESSION['email']);
 if($isLoggedIn){

@@ -1,26 +1,24 @@
 <?php
-
 require('partials/header.php');
-$isLoggedIn = isset($_SESSION['email']);
-
-
 ?>
 
-<h1>Welcome to the Website</h1>
-<p>This is the home page.</p>
+<div class="">
 
-<?php if ($isLoggedIn): ?>
+    <h1 class="text-blue-600 mt-10 text-center  text-4xl font-bold mb-4">Welcome to the Website</h1>
 
-    <p>You are logged in as <?= $_SESSION['email'] ?>. Here's another paragraph just for you!</p>
-    <a href="logout.php?logout=1">Logout</a>
+    <?php if ($isAuthenticated): ?>
+        <!-- Display user details and logout button when logged in -->
+        <h2 class="text-2xl font-semibold text-gray-800">User Details</h2>
+        <p class="text-lg text-gray-700 mt-2">Email: <?= $_SESSION['email'] ?></p>
+        <a href="logout.php" class="mt-4 inline-block bg-red-500 text-white px-6 py-2 rounded-md hover:bg-red-700 transition">Logout</a>
 
-<?php else: ?>
+    <?php else: ?>
+        <!-- Show login button when not logged in -->
+        <a href="login.php" class="inline-block bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition">Login</a>
+    <?php endif; ?>
 
-    <a href="login.php">Login</a>
-    <a href="register.php">Register</a>
 
-<?php endif; ?>
-
+</div>
 <?php
 require('partials/footer.php');
 ?>

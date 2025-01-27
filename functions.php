@@ -8,9 +8,15 @@ require 'PHPMailer/src/Exception.php';
 require 'PHPMailer/src/PHPMailer.php';
 require 'PHPMailer/src/SMTP.php';
 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start(); // Start session only if it's not already started
+}
+
+$isAuthenticated = isset($_SESSION['email']);
+
+
 $errors = array();
-
-
+$notifications = array();
 
 function sendMail($userEmail, $userName, $link)
 {
@@ -26,7 +32,7 @@ function sendMail($userEmail, $userName, $link)
 
         $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
         $mail->Username   = 'saniyaj.dev@gmail.com';                     //SMTP username
-        $mail->Password   = 'eadosnmosiclnviy';                               //SMTP password
+        $mail->Password   = '';                               //SMTP password
 
 
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
