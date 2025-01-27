@@ -8,7 +8,8 @@ require('partials/header.php');
         <!-- Email Input -->
         <div>
             <label for="email" class="block text-gray-700 font-medium mb-2">Enter your email:</label>
-            <input type="email" id="email" name="email" required
+            <p id="email_error" class="text-red-500 text-sm mt-1"></p>
+            <input type="email" id="email" name="email"
                 class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
         </div>
 
@@ -24,6 +25,7 @@ require('partials/header.php');
         <a href="login.php" class="text-blue-500 hover:underline">Back to Login</a>
     </div>
 </div>
+
 
 <?php
 require('partials/footer.php');

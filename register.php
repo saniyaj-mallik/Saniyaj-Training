@@ -13,43 +13,41 @@ if ($isLoggedIn) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    // User Register controller
-    if (isset($_POST['register'])) {
-        $name = $_POST['name'];
-        $user_name = $_POST['user_name'];
-        $email = $_POST['email'];
-        $mobile_number = $_POST['mb-number'];
-        $password = $_POST['password'];
-        $cpassword = $_POST['cpassword'];
-        $gender = $_POST['gender'];
 
-        if ($password !== $cpassword) {
-            $errors['password'] = "Confirm password not matched!";
-        }
+    $name = $_POST['name'];
+    $user_name = $_POST['user_name'];
+    $email = $_POST['email'];
+    $mobile_number = $_POST['mb-number'];
+    $password = $_POST['password'];
+    $cpassword = $_POST['cpassword'];
+    $gender = $_POST['gender'];
 
-        $email_check = "SELECT * FROM users WHERE email = '$email'";
+    if ($password !== $cpassword) {
+        $errors['password'] = "Confirm password not matched!";
+    }
 
-        $res = mysqli_query($con, $email_check);
-        if (mysqli_num_rows($res) > 0) {
-            $errors['email'] = "Email that you have entered is already exist!";
-        }
+    $email_check = "SELECT * FROM users WHERE email = '$email'";
 
-        if (count($errors) === 0) {
-            $encpass = password_hash($password, PASSWORD_BCRYPT);
+    $res = mysqli_query($con, $email_check);
+    if (mysqli_num_rows($res) > 0) {
+        $errors['email'] = "Email that you have entered is already exist!";
+    }
 
-            $insert_data = "INSERT INTO users (name, user_name, email, mobile_number, password, gender, code)
+    if (count($errors) === 0) {
+        $encpass = password_hash($password, PASSWORD_BCRYPT);
+
+        $insert_data = "INSERT INTO users (name, user_name, email, mobile_number, password, gender, code)
                         values('$name', '$user_name', '$email', '$mobile_number', '$encpass', '$gender', '$code')";
-            $data_check = mysqli_query($con, $insert_data);
+        $data_check = mysqli_query($con, $insert_data);
 
-            if ($data_check) {
-                $_SESSION['email'] = $email;
-                $_SESSION['password'] = $password;
-                header('location: index.php');
-                exit();
-            }
-        } else {
-            $errors['db-error'] = "Failed while inserting data into database!";
+        if ($data_check) {
+            $_SESSION['email'] = $email;
+            $_SESSION['password'] = $password;
+            header('location: index.php');
+            exit();
         }
+    } else {
+        $errors['db-error'] = "Failed while inserting data into database!";
     }
 }
 

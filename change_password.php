@@ -29,29 +29,28 @@ if ($user) {
 
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        if (isset($_POST['reset_pass_btn'])) {
-            $password = mysqli_real_escape_string($con, $_POST['password']);
-            $cpassword = mysqli_real_escape_string($con, $_POST['cpassword']);
 
-            if ($password !== $cpassword) {
-                $errors['password'] = "Confirm password not matched!";
-            }
-            // hash password
-            $encpass = password_hash($password, PASSWORD_BCRYPT);
+        $password = mysqli_real_escape_string($con, $_POST['password']);
+        $cpassword = mysqli_real_escape_string($con, $_POST['cpassword']);
 
-            $email = $user['email'];
-            // dd($email);
-            // save password
-            $insert_data = "UPDATE users SET password = '$encpass', code = '' WHERE email = '$email';";
-            $data_check = mysqli_query($con, $insert_data);
+        if ($password !== $cpassword) {
+            $errors['password'] = "Confirm password not matched!";
+        }
+        // hash password
+        $encpass = password_hash($password, PASSWORD_BCRYPT);
 
-            if ($data_check) {
-                $_SESSION['email'] = $user['email'];
-                $_SESSION['password'] = $user['password'];
-                // redirect to home page
-                header('location: index.php');
-                exit();
-            }
+        $email = $user['email'];
+        // dd($email);
+        // save password
+        $insert_data = "UPDATE users SET password = '$encpass', code = '' WHERE email = '$email';";
+        $data_check = mysqli_query($con, $insert_data);
+
+        if ($data_check) {
+            $_SESSION['email'] = $user['email'];
+            $_SESSION['password'] = $user['password'];
+            // redirect to home page
+            header('location: index.php');
+            exit();
         }
     }
 } else {

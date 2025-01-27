@@ -21,23 +21,44 @@ if (isset($errors) && count($errors) > 0) {
     }
 } else {
     // If there are no errors, show the password reset form
-    ?>
+?>
     <div class="max-w-md mx-auto mt-12 mb-20 p-6 bg-white border rounded-lg shadow-md">
         <h1 class="text-2xl font-semibold mb-4">Reset Your Password</h1>
         <form id="resetPasswordForm" method="POST">
-            <label for="password" class="block text-sm font-medium text-gray-700">New Password:</label>
-            <input type="password" id="password" name="password" required class="mt-2 p-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400">
+            <!-- Password Input -->
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-700">New Password:</label>
+                <p id="password_error" class="text-red-500 text-sm mt-1"></p>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    class="mt-2 p-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400">
+            </div>
 
-            <label for="cpassword" class="block text-sm font-medium text-gray-700 mt-4">Confirm Password:</label>
-            <input type="password" id="cpassword" name="cpassword" required class="mt-2 p-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400">
+            <!-- Confirm Password Input -->
+            <div class="mt-4">
+                <label for="cpassword" class="block text-sm font-medium text-gray-700">Confirm Password:</label>
+                <p id="cpassword_error" class="text-red-500 text-sm mt-1"></p>
+                <input
+                    type="password"
+                    id="cpassword"
+                    name="cpassword"
+                    class="mt-2 p-2 w-full border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400">
+            </div>
 
-            <input type="submit" name="reset_pass_btn" value="Reset Password" class="mt-4 w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none">
+            <!-- Submit Button -->
+            <input
+                type="submit"
+                name="reset_pass_btn"
+                value="Reset Password"
+                class="mt-4 w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none">
         </form>
         <div class="mt-4 text-center">
             <a href="login.php" class="text-blue-500 hover:text-blue-700">Login</a>
         </div>
     </div>
-    <?php
+<?php
 }
 ?>
 

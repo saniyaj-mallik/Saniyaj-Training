@@ -2,7 +2,7 @@
 require('partials/header.php');
 ?>
 
-<form class="register-form bg-white max-w-md mx-auto mt-10 mb-10 p-6 rounded-lg shadow-md" method="POST">
+<form id="login-form" class="bg-white max-w-md mx-auto mt-10 mb-10 p-6 rounded-lg shadow-md" method="POST">
     <h2 class="text-2xl font-bold text-center mb-6">Login</h2>
     <?php
     if (isset($errors) && count($errors) == 1) {
@@ -33,12 +33,16 @@ require('partials/header.php');
     ?>
 
     <label for="user_name" class="block text-gray-700 font-medium mb-2">User Name</label>
-    <input type="text" id="user_name" name="user_name" placeholder="Enter your username" required
+    <p id="user_name_error" class="text-red-500 text-sm mt-1"></p>
+    <input type="text" id="user_name" name="user_name" placeholder="Enter your username"
         class="w-full border border-gray-300 rounded-lg px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
 
+
     <label for="password" class="block text-gray-700 font-medium mb-2">Password</label>
-    <input type="password" id="password" name="password" placeholder="Enter your password" required
+    <p id="password_error" class="text-red-500 text-sm mt-1"></p>
+    <input type="password" id="password" name="password" placeholder="Enter your password"
         class="w-full border border-gray-300 rounded-lg px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+
 
     <input type="submit" name="login" value="Login"
         class="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition-colors cursor-pointer mb-4">

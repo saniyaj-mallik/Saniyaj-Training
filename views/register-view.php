@@ -2,7 +2,7 @@
 require('partials/header.php');
 ?>
 
-<form class="register-form bg-white max-w-lg mx-auto mt-10 m-8 p-8 rounded-lg shadow-md" method="POST">
+<form id="registerForm" class="register-form bg-white max-w-lg mx-auto mt-10 m-8 p-8 rounded-lg shadow-md" method="POST">
     <h2 class="text-2xl font-bold text-center mb-6">Register</h2>
     <?php
     if (isset($errors) && count($errors) == 1) {
@@ -34,45 +34,52 @@ require('partials/header.php');
 
     <!-- Name Input -->
     <label for="name" class="block text-gray-700 font-medium mb-2">Name</label>
-    <input type="text" id="name" name="name" placeholder="Enter your name" required
-        class="w-full border border-gray-300 rounded-lg px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+    <p id="name_error" class="text-red-500 text-sm mb-4"></p>
+    <input type="text" id="name" name="name" placeholder="Enter your name" 
+        class="w-full border border-gray-300 rounded-lg px-4 py-2 mb-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
 
     <!-- Username Input -->
     <label for="user_name" class="block text-gray-700 font-medium mb-2">User Name</label>
-    <input type="text" id="user_name" name="user_name" placeholder="Enter your username" required
-        class="w-full border border-gray-300 rounded-lg px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+    <p id="user_name_error" class="text-red-500 text-sm mb-4"></p>
+    <input type="text" id="user_name" name="user_name" placeholder="Enter your username" 
+        class="w-full border border-gray-300 rounded-lg px-4 py-2 mb-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
 
     <!-- Email Input -->
     <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
-    <input type="email" id="email" name="email" placeholder="Enter your email" required
-        class="w-full border border-gray-300 rounded-lg px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+    <p id="email_error" class="text-red-500 text-sm mb-4"></p>
+    <input type="email" id="email" name="email" placeholder="Enter your email" 
+        class="w-full border border-gray-300 rounded-lg px-4 py-2 mb-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
 
     <!-- Mobile Number Input -->
     <label for="mb-number" class="block text-gray-700 font-medium mb-2">Mobile Number</label>
-    <input type="number" id="mb-number" name="mb-number" placeholder="Enter your number" required
-        class="w-full border border-gray-300 rounded-lg px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+    <p id="mb_number_error" class="text-red-500 text-sm mb-4"></p>
+    <input type="number" id="mb-number" name="mb-number" placeholder="Enter your number" 
+        class="w-full border border-gray-300 rounded-lg px-4 py-2 mb-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
 
     <!-- Password Input -->
     <label for="cpassword" class="block text-gray-700 font-medium mb-2">Password</label>
-    <input type="password" id="cpassword" name="cpassword" placeholder="Enter your password" required
-        class="w-full border border-gray-300 rounded-lg px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+    <p id="cpassword_error" class="text-red-500 text-sm mb-4"></p>
+    <input type="password" id="cpassword" name="cpassword" placeholder="Enter your password" 
+        class="w-full border border-gray-300 rounded-lg px-4 py-2 mb-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
 
     <!-- Confirm Password Input -->
     <label for="password" class="block text-gray-700 font-medium mb-2">Confirm Password</label>
-    <input type="password" id="password" name="password" placeholder="Confirm your password" required
-        class="w-full border border-gray-300 rounded-lg px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+    <p id="password_error" class="text-red-500 text-sm mb-4"></p>
+    <input type="password" id="password" name="password" placeholder="Confirm your password" 
+        class="w-full border border-gray-300 rounded-lg px-4 py-2 mb-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
 
     <!-- Gender Selection -->
     <label class="block text-gray-700 font-medium mb-2">Gender</label>
+    <p id="gender_error" class="text-red-500 text-sm mb-4"></p>
     <div class="gender-options flex items-center space-x-4 mb-4">
         <label class="flex items-center">
-            <input type="radio" name="gender" value="male" required class="mr-2"> Male
+            <input type="radio" id="male" name="gender" value="male"  class="mr-2"> Male
         </label>
         <label class="flex items-center">
-            <input type="radio" name="gender" value="female" required class="mr-2"> Female
+            <input type="radio" id="female" name="gender" value="female"  class="mr-2"> Female
         </label>
         <label class="flex items-center">
-            <input type="radio" name="gender" value="others" required class="mr-2"> Others
+            <input type="radio" id="others" name="gender" value="others"  class="mr-2"> Others
         </label>
     </div>
 
