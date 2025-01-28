@@ -8,6 +8,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 
+$notifications = '';
 $heading = "Home Page";
 
 require('views/index-view.php');

@@ -10,6 +10,8 @@
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="css/style.css">
 
+
+
 </head>
 
 <body class="pt-sans">
@@ -39,3 +41,9 @@
 
     <!-- max width content div start -->
     <div class="max-w-[1125px] px-4 m-auto">
+        <?php if (!empty($notifications)) : ?>
+            <div id="notify" class="flex justify-between">
+                <p><?= $notifications ?></p>
+                <span id="cancel-notification" class="text-red-500 cursor-pointer ml-2">Cancel</span>
+            </div>
+        <?php endif; ?>

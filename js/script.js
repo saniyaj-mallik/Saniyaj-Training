@@ -1,4 +1,19 @@
-// All validation of website is here
+// All validation of website is here 
+
+
+// Cancel Notification functionality
+const cancelBtn = document.getElementById('cancel-notification');
+const notifyDiv = document.getElementById('notify');
+
+if (cancelBtn && notifyDiv) {
+    // Add a click event listener to the cancel button
+    cancelBtn.addEventListener('click', () => {
+        // Hide the notification div
+        notifyDiv.style.display = 'none';
+    });
+}
+
+
 
 // Function to check if the email is valid
 function isValidEmail(email) {
@@ -167,26 +182,26 @@ const resetPasswordForm = document.getElementById('resetPasswordForm');
 console.log(resetPasswordForm);
 
 if (resetPasswordForm) {
-    
+
     resetPasswordForm.addEventListener('submit', function (e) {
         console.log('clicked');
-        
+
         e.preventDefault();
         let isValid = true;
-        
+
         const passwordInput = document.getElementById('password');
         const cpasswordInput = document.getElementById('cpassword');
         const passwordError = document.getElementById('password_error');
         const cpasswordError = document.getElementById('cpassword_error');
-        
-        
+
+
         // Clear previous error messages
         passwordError.textContent = '';
         cpasswordError.textContent = '';
-        
+
         const password = passwordInput.value.trim();
         const cpassword = cpasswordInput.value.trim();
-        
+
         console.log(password, cpassword);
         // Validate New Password
         if (password === '') {
@@ -199,7 +214,7 @@ if (resetPasswordForm) {
             isValid = false;
             passwordError.textContent = 'Password must be no more than 10 characters.';
         }
-        
+
         // Validate Confirm Password
         if (cpassword === '') {
             isValid = false;
@@ -210,7 +225,7 @@ if (resetPasswordForm) {
         }
         console.log('form validated');
 
-         // Submit form if valid
+        // Submit form if valid
         if (isValid) {
             this.submit();
         }

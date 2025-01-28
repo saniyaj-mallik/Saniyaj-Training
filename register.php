@@ -3,7 +3,7 @@ require('functions.php');
 if (session_status() == PHP_SESSION_NONE) {
     session_start(); // Start session only if it's not already started
 }
-
+$notifications = '';
 $heading = "Register page";
 
 $isLoggedIn = isset($_SESSION['email']);

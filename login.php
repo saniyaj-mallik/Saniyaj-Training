@@ -8,7 +8,7 @@ $isLoggedIn = isset($_SESSION['email']);
 if($isLoggedIn){
     header('location: index.php');
 }
-
+$notifications = '';
 $heading = "Login page";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

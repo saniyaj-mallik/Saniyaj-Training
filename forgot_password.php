@@ -5,7 +5,7 @@ require('db.php');
 if (session_status() == PHP_SESSION_NONE) {
     session_start(); // Start session only if it's not already started
 }
-
+$notifications = '';
 $heading = 'Forgot Password';
 
 
@@ -32,19 +32,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $link = "http://localhost/training/change_password.php?code=" . urlencode($code);
 
             sendMail($userEmail, $userName, $link);
-            $message = "We have sent you password reset mai to " . $fetch['email'];
-            echo $message;
+            $message = "We have sent you password reset mail to " . $fetch['email'];
+            $notifications = $message;
         }
 
-
-        // header('location: change_password.php');
-
-
-
-        // dd($message);
-
     } else {
-        dd("no user found");
+        // echo "User not found";
+        $notifications = "User not found.";
     }
 }
 
