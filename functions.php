@@ -15,7 +15,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
 // session timeout cheching
 // Set session timeout duration (in seconds)
-$timeout_duration = 1* 60; // 15 minutes
+$timeout_duration = 15* 60; // 15 minutes
 
 // If the session has a 'last_activity' timestamp, check it against the current time
 if (isset($_SESSION['last_activity'])) {
