@@ -6,10 +6,10 @@ if (session_status() == PHP_SESSION_NONE) {
 $notifications = '';
 $heading = "Register page";
 
-$isLoggedIn = isset($_SESSION['email']);
-if ($isLoggedIn) {
+if($isAuthenticated){
     header('location: index.php');
 }
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 

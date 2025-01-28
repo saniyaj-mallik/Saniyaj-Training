@@ -25,6 +25,7 @@
 
             <!-- Navigation Links -->
             <div class="flex space-x-6">
+                <span><?= $userEmailId ?></span>
                 <a class="<?= urlIs('/training/') ? 'text-blue-300' : 'text-white' ?> hover:text-blue-300 transition" href="/training">Home</a>
 
                 <?php if ($isAuthenticated): ?>
@@ -42,8 +43,8 @@
     <!-- max width content div start -->
     <div class="max-w-[1125px] px-4 m-auto">
         <?php if (!empty($notifications)) : ?>
-            <div id="notify" class="flex justify-between">
+            <div id="notify" class="flex justify-between max-w-lg bg-blue-200 p-4 rounded m-auto">
                 <p><?= $notifications ?></p>
-                <span id="cancel-notification" class="text-red-500 cursor-pointer ml-2">Cancel</span>
+                <span id="cancel-notification" class="text-red-500 hover:text-red-900 transition cursor-pointer ml-2">Cancel</span>
             </div>
         <?php endif; ?>

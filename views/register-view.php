@@ -47,7 +47,7 @@ require('partials/header.php');
     <!-- Email Input -->
     <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
     <p id="email_error" class="text-red-500 text-sm mb-4"></p>
-    <input type="email" id="email" name="email" placeholder="Enter your email" 
+    <input type="text" id="email" name="email" placeholder="Enter your email" 
         class="w-full border border-gray-300 rounded-lg px-4 py-2 mb-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
 
     <!-- Mobile Number Input -->

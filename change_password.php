@@ -7,6 +7,13 @@ require('db.php');
 if (session_status() == PHP_SESSION_NONE) {
     session_start(); // Start session only if it's not already started
 }
+
+if($isAuthenticated){
+    header('location: index.php');
+}
+
+
+
 $notifications = '';
 $heading = 'Change Password';
 $code = '';
@@ -21,7 +28,7 @@ if (isset($_GET['code'])) {
 
 
 // get user from code
-$isUser = "SELECT * FROM users WHERE code = '$code'";
+$isUser = "SELECT * FROM users WHERE code = '$code' AND code_expiry > NOW()";
 $res = mysqli_query($con, $isUser);
 $user = mysqli_fetch_assoc($res);
 

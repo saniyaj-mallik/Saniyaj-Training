@@ -4,10 +4,10 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start(); 
 }
 
-$isLoggedIn = isset($_SESSION['email']);
-if($isLoggedIn){
+if($isAuthenticated){
     header('location: index.php');
 }
+
 $notifications = '';
 $heading = "Login page";
 

@@ -12,11 +12,36 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start(); // Start session only if it's not already started
 }
 
+
+// session timeout cheching
+// Set session timeout duration (in seconds)
+$timeout_duration = 1* 60; // 15 minutes
+
+// If the session has a 'last_activity' timestamp, check it against the current time
+if (isset($_SESSION['last_activity'])) {
+    $session_lifetime = time() - $_SESSION['last_activity'];
+
+    // If the session has expired, destroy it and log the user out
+    if ($session_lifetime > $timeout_duration) {
+        session_unset();      
+        session_destroy();    
+        header("Location: login.php"); 
+        exit();
+    }
+}
+
+// Update the 'last_activity' timestamp to the current time
+$_SESSION['last_activity'] = time();
+
 $isAuthenticated = isset($_SESSION['email']);
 
 
 $errors = array();
-$notifications = 'eadosnmosiclnviy';
+$notifications = '';
+$userEmailId = '';
+if ($isAuthenticated) {
+    $userEmailId = $_SESSION['email'];
+}
 
 // Send mail function
 function sendMail($userEmail, $userName, $link)
@@ -33,7 +58,7 @@ function sendMail($userEmail, $userName, $link)
 
         $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
         $mail->Username   = 'saniyaj.dev@gmail.com';                     //SMTP username
-        $mail->Password   = '';                               //SMTP password
+        $mail->Password   = 'eadosnmosiclnviy';                               //SMTP password
 
 
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
@@ -51,7 +76,6 @@ function sendMail($userEmail, $userName, $link)
 
 
         $mail->send();
-        echo 'Message has been sent';
     } catch (Exception $e) {
         $message = "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         echo $message;

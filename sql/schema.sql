@@ -10,6 +10,7 @@ CREATE TABLE users (
     mobile_number VARCHAR(15) NOT NULL UNIQUE,   
     password VARCHAR(255) NOT NULL, 
     gender ENUM('male', 'female', 'others') NOT NULL,            
-    code VARCHAR(50),                           
+    code VARCHAR(50),  
+    code_expiry DATETIME,                         
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
 );
