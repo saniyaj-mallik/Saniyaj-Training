@@ -87,24 +87,28 @@
 						<div class="container"> <!-- information container start -->
 
 							<div class="box"> <!-- Each information box start -->
-								<img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/images/box.png' ); ?>" alt="Box Image 1">
+								<img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/images/box.png' ); ?>"
+									alt="Box Image 1">
 								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, facilis.</p>
 							</div> <!-- Each information box end-->
 
 							<div class="box"> <!-- Each information box start -->
-								<img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/images/box.png' ); ?>" alt="Box Image 1">
+								<img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/images/box.png' ); ?>"
+									alt="Box Image 1">
 								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, facilis.</p>
 							</div> <!-- Each information box end-->
 
 
 							<div class="box"> <!-- Each information box start-->
-								<img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/images/box.png' ); ?>" alt="Box Image 1">
+								<img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/images/box.png' ); ?>"
+									alt="Box Image 1">
 								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, facilis.</p>
 							</div> <!-- Each information box end-->
 
 
 							<div class="box"><!-- Each information box start-->
-								<img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/images/box.png' ); ?>" alt="Box Image 1">
+								<img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/images/box.png' ); ?>"
+									alt="Box Image 1">
 								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, facilis.</p>
 							</div> <!-- Each information box end-->
 
@@ -116,6 +120,35 @@
 				</div> <!-- Information container -->
 
 			</section> <!-- Information section end -->
+
+
+			<section id="quote"> <!-- Quote section-->
+				<div class="max-container"> <!-- Quote section container-->
+
+					<p>
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis id odit dolores placeat inventore
+						temporahic eveniet fuga quia voluptate quasi et ipsum nemo possimus sunt, dolore enim
+						praesentium modi.
+					</p>
+					<p id="speaker">-Thor, God of Thunder</p>
+
+				</div><!-- Quote section container end-->
+			</section> <!-- Quote section end-->
+
+			<footer id="footer"> <!-- footer section-->
+				<div id="footer-container">
+
+					<div id="cta">
+						<h3>Call to Action! it's time!</h3>
+						<p>Sign up for our product by clicking that button right over there.</p>
+					</div> <!-- footer call to action end-->
+
+					<div id="cta-btn">
+						<button>Sign Up</button>
+					</div>
+
+				</div><!-- footer container end-->
+			</footer> <!-- footer section-->
 		</main>
 
 	</div><!-- #primary -->
