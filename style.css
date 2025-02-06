@@ -118,7 +118,7 @@ nav>div {
     background-color: var(--blue);
     border: 1px solid var(--blue);
     border-radius: 0.5rem;
-    padding: 0.8rem 1rem;
+    padding: 0.5rem 1.3rem;
     font-size: 1rem;
 }
 
@@ -185,6 +185,7 @@ nav>div {
     font-weight: 300;
     color: var(--dark);
 }
+
 #speaker {
     text-align: end;
     font-weight: 900;
@@ -214,7 +215,8 @@ nav>div {
     width: 70%;
     color: var(--light);
 }
-#cta h3{
+
+#cta h3 {
     color: var(--light);
 }
 
@@ -227,3 +229,57 @@ nav>div {
     color: var(--light);
 }
 
+@media only screen and (max-width: 768px) {
+
+    nav {
+        flex-direction: column;
+        gap: 1.2rem;
+    }
+
+    .link-li a {
+        font-size: 1rem;
+    }
+
+    #hero-sec {
+        flex-direction: column;
+        gap: 1.8rem;
+    }
+
+    #hero-sec>div {
+        width: 100%;
+
+    }
+
+    #hero-img {
+        order: 1;
+
+    }
+    
+    #hero-info {
+        order: 2;
+        
+    }
+    #hero-info h2{
+        font-size: 2rem;
+    }
+
+    #quote>div {
+        padding: 9rem 0px;
+    }
+
+    #quote>div>p {
+        font-size: 1.4rem;
+        padding: 5px 0px;
+    }
+
+    #footer-container {
+        flex-direction: column;
+        padding: 1rem 1.3rem;
+        margin: 1rem 1rem;
+        gap: 0.5rem;
+    }
+
+    #footer-container div {
+        width: 100%;
+    }
+}

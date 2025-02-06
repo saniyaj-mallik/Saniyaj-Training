@@ -134,22 +134,22 @@
 
 				</div><!-- Quote section container end-->
 			</section> <!-- Quote section end-->
-
-			<footer id="footer"> <!-- footer section-->
-				<div id="footer-container">
-
-					<div id="cta">
-						<h3>Call to Action! it's time!</h3>
-						<p>Sign up for our product by clicking that button right over there.</p>
-					</div> <!-- footer call to action end-->
-
-					<div id="cta-btn">
-						<button>Sign Up</button>
-					</div>
-
-				</div><!-- footer container end-->
-			</footer> <!-- footer section-->
 		</main>
+		<footer id="footer"> <!-- footer section-->
+			<div id="footer-container">
+
+				<div id="cta">
+					<h3>Call to Action! it's time!</h3>
+					<p>Sign up for our product by clicking that button right over there.</p>
+				</div> <!-- footer call to action end-->
+
+				<div id="cta-btn">
+					<button>Sign Up</button>
+				</div>
+
+			</div><!-- footer container end-->
+		</footer> <!-- footer section-->
+
 
 	</div><!-- #primary -->
 </body> <!-- end body -->
