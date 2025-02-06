@@ -9,20 +9,21 @@
 
 ?><!doctype html>
 <html <?php language_attributes(); ?>>
-<head>
-<meta charset="<?php bloginfo( 'charset' ); ?>">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="profile" href="http://gmpg.org/xfn/11">
-<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 
-<?php wp_head(); ?>
+<head>
+	<meta charset="<?php bloginfo( 'charset' ); ?>">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+
+	<?php wp_head(); ?>
 </head>
 
 <body <?php body_class(); ?>>
 
 	<div>
 		<!-- Header section -->
-		<section id="header">
+		<section id="header-section">
 			<div class="max-container"> <!-- Header container-->
 
 				<header>
@@ -76,7 +77,45 @@
 
 		</section>
 		<main>
-			<!-- Main content -->
+			<section id="information"> <!-- Information section start -->
+				<div class="max-container"> <!-- Information container -->
+
+					<h2>Some random information.</h2>
+
+					<div class="info-section "> <!-- Info-section -->
+
+						<div class="container"> <!-- information container start -->
+
+							<div class="box"> <!-- Each information box start -->
+								<img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/images/box.png' ); ?>" alt="Box Image 1">
+								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, facilis.</p>
+							</div> <!-- Each information box end-->
+
+							<div class="box"> <!-- Each information box start -->
+								<img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/images/box.png' ); ?>" alt="Box Image 1">
+								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, facilis.</p>
+							</div> <!-- Each information box end-->
+
+
+							<div class="box"> <!-- Each information box start-->
+								<img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/images/box.png' ); ?>" alt="Box Image 1">
+								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, facilis.</p>
+							</div> <!-- Each information box end-->
+
+
+							<div class="box"><!-- Each information box start-->
+								<img src="<?php echo esc_url( get_stylesheet_directory_uri() . '/images/box.png' ); ?>" alt="Box Image 1">
+								<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex, facilis.</p>
+							</div> <!-- Each information box end-->
+
+
+						</div> <!-- information section end-->
+
+					</div> <!-- Info-section end -->
+
+				</div> <!-- Information container -->
+
+			</section> <!-- Information section end -->
 		</main>
 
 	</div><!-- #primary -->

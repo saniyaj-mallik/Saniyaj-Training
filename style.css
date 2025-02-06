@@ -15,6 +15,9 @@ Version: 1.0
     padding: 0;
     box-sizing: border-box;
 }
+html{
+    font-size: 62.5%; /* 1rem = 10px */
+}
 
 :root {
     --dark: #1F2937;
@@ -33,18 +36,14 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
-
-
 }
 
 .max-container {
     width: 100%;
     max-width: 1500px;
-    /* background-color: red; */
-
 }
 
-#header {
+#header-section {
     background-color: var(--dark);
     padding-bottom: 150px;
 }
@@ -64,7 +63,7 @@ nav>div {
 
 #header-logo a {
     text-decoration: none;
-    font-size: 24px;
+    font-size: 2.5rem;
     color: var(--txt-light);
 }
 
@@ -75,7 +74,7 @@ nav>div {
 .link-li a {
     color: var(--shade);
     text-decoration: none;
-    font-size: 18px;
+    font-size: 1.8rem;
     transition: color 0.2s;
 }
 
@@ -83,6 +82,8 @@ nav>div {
     color: var(--orange);
 }
 
+
+/* hero hection */
 #hero-sec {
     margin-top: 100px;
     display: flex;
@@ -105,13 +106,13 @@ nav>div {
     display: flex;
     gap: 5px;
     flex-direction: column;
-    font-size: 48px;
+    font-size: 4rem;
     font-weight: 800;
     color: var(--txt-light);
 }
 
 #hero-info p {
-    font-size: 18px;
+    font-size: 1.8rem;
     color: var(--shade);
 }
 
@@ -121,11 +122,53 @@ nav>div {
     border: 1px solid var(--blue);
     border-radius: 5px;
     padding: 8px 10px;
-    font-size: 14px;
+    font-size: 1.5rem;
 }
 
 #hero-img>img {
     width: 100%;
     height: 230px;
+    border-radius: 0.5rem;
+}
+
+/* information section */
+#information {
+    background-color: var(--light);
+}
+
+#information h2 {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 800;
+    padding: 30px 0px;
+    color: var(--dark);
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 5px;
+    padding-bottom: 100px;
+}
+
+.box {
+    width: 155px;
+}
+
+.box img {
+    border: 2px solid var(--blue);
     border-radius: 5px;
+    width: 100%;
+    height: 100px;
+}
+
+.box p {
+    margin: 0;
+    padding: 0px 10px;
+    color: #333;
+    font-size: 1.5rem;
+    text-align: justify;
 }
