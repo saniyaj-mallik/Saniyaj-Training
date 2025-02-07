@@ -1,6 +1,7 @@
 <?php
 /**
- * The custom template for our theme.
+ *
+ * Template name: CustomTemplate
  *
  * @package storefront
  */

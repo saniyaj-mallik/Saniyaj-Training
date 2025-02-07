@@ -15,6 +15,9 @@ Version: 1.0
     padding: 0;
     box-sizing: border-box;
 }
+html{
+    margin-top: 0px !important;
+}
 
 :root {
     --dark: #1F2937;
@@ -230,7 +233,9 @@ nav>div {
 }
 
 @media only screen and (max-width: 768px) {
-
+    html{
+        margin-top: 0px !important;
+    }
     nav {
         flex-direction: column;
         gap: 1.2rem;
