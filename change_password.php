@@ -19,7 +19,7 @@ $heading = 'Change Password';
 $code = '';
 
 if (isset($_GET['code'])) {
-    $code = $_GET['code'];
+    $code = mysqli_real_escape_string($con, $_GET['code'] );
 } else {
     $errors["otp"] = "You are not authorized to acces this page;";
 }

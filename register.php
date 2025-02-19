@@ -14,13 +14,13 @@ if($isAuthenticated){
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
-    $name = $_POST['name'];
-    $user_name = $_POST['user_name'];
-    $email = $_POST['email'];
-    $mobile_number = $_POST['mb-number'];
-    $password = $_POST['password'];
-    $cpassword = $_POST['cpassword'];
-    $gender = $_POST['gender'];
+    $name = mysqli_real_escape_string($con, $_POST['name']);
+    $user_name = mysqli_real_escape_string($con, $_POST['user_name'] );
+    $email = mysqli_real_escape_string($con, $_POST['email'] );
+    $mobile_number = mysqli_real_escape_string($con, $_POST['mb-number'] );
+    $password = mysqli_real_escape_string($con, $_POST['password'] );
+    $cpassword = mysqli_real_escape_string($con, $_POST['cpassword'] );
+    $gender = mysqli_real_escape_string($con,   $_POST[ 'gender' ] );
 
     if ($password !== $cpassword) {
         $errors['password'] = "Confirm password not matched!";
