@@ -52,7 +52,7 @@ class Pickup_Shipping_Settings {
 							<input type="text" name="pickup_store_name[]" value="<?php echo esc_attr( $store['name'] ); ?>" placeholder="Store Name">
 							<input type="text" name="pickup_store_location[]" value="<?php echo esc_attr( $store['location'] ); ?>" placeholder="Store Location (Google Maps URL)">
 							<!-- <button type="button" class="button cancel-store-row"> cancel</button> -->
-							<button type="button" class="button cancel-store-row"><?php _e( 'Cancel', 'woocommerce' ); ?></button>
+							<button type="button" class="button cancel-store-row"><?php esc_html_e( 'Cancel', 'woocommerce' ); ?></button>
 						</div>
 					<?php endforeach; ?>
 				</div>

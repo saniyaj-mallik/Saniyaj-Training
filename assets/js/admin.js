@@ -5,7 +5,7 @@ jQuery(document).ready(function($) {
         var row = '<div class="pickup-store-row" data-index="' + index + '">' +
             '<input type="text" name="pickup_store_name[]" placeholder="Store Name">' +
             '<input type="text" name="pickup_store_location[]" placeholder="Store Location (Google Maps URL)">' +
-            '<button type="button" class="button cancel-store-row"><?php _e("Cancel", "woocommerce"); ?></button>' +
+            '<button type="button" class="button cancel-store-row">Cancel</button>' +
             '</div>';
         $('#pickup-stores').append(row);
     });

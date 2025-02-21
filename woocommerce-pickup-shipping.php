@@ -50,4 +50,33 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 			wp_enqueue_style( 'pickup-shipping-admin', plugin_dir_url( __FILE__ ) . 'assets/css/admin.css', array(), '1.0' );
 		}
 	}
+
+	// Add Pickup Store and Date Fields to Checkout Page
+	add_action('woocommerce_after_checkout_billing_form', 'add_pickup_store_selection', 11);
+	function add_pickup_store_selection() {
+		// if ($method->id === 'pickup_shipping_method') {
+			// Get saved stores from the database
+			$stores = get_option('pickup_shipping_stores', array());
+
+			if (!empty($stores)) {
+				echo '<div class="pickup-store-selection">';
+				echo '<label for="pickup-store">' . __('Select Store:', 'woocommerce') . '</label>';
+				echo '<select name="pickup_store" id="pickup-store" required>';
+				echo '<option value="">' . __('Select a store', 'woocommerce') . '</option>';
+				foreach ($stores as $store) {
+					echo '<option value="' . esc_attr($store['name']) . '">' . esc_html($store['name']) . '</option>';
+				}
+				echo '</select>';
+				echo '</div>';
+			}
+
+			// Add pickup date field
+			echo '<div class="pickup-date-selection">';
+			echo '<label for="pickup-date">' . __('Pickup Date:', 'woocommerce') . '</label>';
+			echo '<input type="date" name="pickup_date" id="pickup-date" min="' . date('Y-m-d') . '" max="' . date('Y-m-d', strtotime('+1 month')) . '" required>';
+			echo '</div>';
+		// }
+	}
 }
+
+
