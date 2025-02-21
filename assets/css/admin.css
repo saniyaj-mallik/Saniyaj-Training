@@ -1,0 +1,13 @@
+.pickup-store-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.pickup-store-row input[type="text"] {
+    margin-right: 10px;
+}
+
+.cancel-store-row {
+    margin-left: 10px;
+}
