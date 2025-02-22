@@ -49,6 +49,7 @@ class Pickup_Shipping_Settings {
 				<div id="pickup-stores">
 					<?php foreach ( $stores as $index => $store ) : ?>
 						<div class="pickup-store-row" data-index="<?php echo $index ; ?>">
+							<span class="drag-handle">☰</span>
 							<input type="text" name="pickup_store_name[]" value="<?php echo esc_attr( $store['name'] ); ?>" placeholder="Store Name">
 							<input type="text" name="pickup_store_location[]" value="<?php echo esc_attr( $store['location'] ); ?>" placeholder="Store Location (Google Maps URL)">
 							<!-- <button type="button" class="button cancel-store-row"> cancel</button> -->
