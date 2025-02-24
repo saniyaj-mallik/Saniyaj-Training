@@ -333,4 +333,94 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 		<?php
 	}
 	// google map ends here.
+
+
+
+	// Schedule the cron job on plugin activation.
+	register_activation_hook( __FILE__, 'schedule_pickup_reminder_cron' );
+	/**
+	 * Schedules a daily cron event to send pickup reminder emails if not already scheduled.
+	 *
+	 * This function checks if the 'send_pickup_reminder_emails_event' event is already scheduled
+	 * using wp_next_scheduled(). If it isn’t, it schedules a recurring daily event starting
+	 * from the current time using wp_schedule_event().
+	 *
+	 * @since 1.0.0
+	 * @return void
+	 */
+	function schedule_pickup_reminder_cron() {
+		if ( ! wp_next_scheduled( 'send_pickup_reminder_emails_event' ) ) {
+			wp_schedule_event( time(), 'daily', 'send_pickup_reminder_emails_event' );
+		}
+	}
+
+	// Hook the function to the scheduled event.
+	add_action( 'send_pickup_reminder_emails_event', 'send_pickup_reminder_emails' );
+
+	// Clear the cron job on plugin deactivation.
+	register_deactivation_hook( __FILE__, 'clear_pickup_reminder_cron' );
+	/**
+	 * Clears the scheduled cron event for sending pickup reminder emails.
+	 *
+	 * This function retrieves the timestamp of the next scheduled 'send_pickup_reminder_emails_event'
+	 * using wp_next_scheduled(). If a scheduled event exists, it unschedules it using.
+	 * wp_unschedule_event() to stop future occurrences.
+	 *
+	 * @since 1.0.0
+	 * @return void
+	 */
+	function clear_pickup_reminder_cron() {
+		$timestamp = wp_next_scheduled( 'send_pickup_reminder_emails_event' );
+		if ( $timestamp ) {
+			wp_unschedule_event( $timestamp, 'send_pickup_reminder_emails_event' );
+		}
+	}
+
+	/**
+	 * Sends pickup reminder emails to customers with orders scheduled for pickup tomorrow.
+	 *
+	 * This function identifies orders with a pickup date set for the next day, based on the site's timezone.
+	 * It retrieves WooCommerce orders with a '_pickup_date' meta value matching tomorrow's date and a status of
+	 * 'processing' or 'completed'. For each valid order, it sends an email reminder to the customer’s billing
+	 * email, including the pickup store and date.
+	 *
+	 * @since 1.0.0
+	 * @return void
+	 */
+	function send_pickup_reminder_emails() {
+		// Set the time zone.
+		$timezone = wp_timezone();
+		$today = new DateTime( 'now', $timezone );
+		$pickup_date = $today->modify( '+1 day' )->format( 'Y-m-d' );
+
+		$args = array(
+			'limit' => -1, // Get all orders.
+			'status' => array( 'processing', 'completed' ), // Only process orders that are not cancelled or failed.
+			'meta_key' => '_pickup_date',
+			'meta_value' => $pickup_date,
+			'meta_compare' => '=',
+		);
+
+		$orders = wc_get_orders( $args );
+
+		if ( ! empty( $orders ) ) {
+			foreach ( $orders as $order ) {
+				$customer_email = $order->get_billing_email();
+				$pickup_store = get_post_meta( $order->get_id(), '_pickup_store', true );
+				$pickup_date = get_post_meta( $order->get_id(), '_pickup_date', true );
+
+				if ( $customer_email && $pickup_store && $pickup_date ) {
+					$subject = esc_html_e( 'Reminder: Your Order is Ready for Pickup', 'woocommerce' );
+					$message = sprintf(
+						esc_html( 'Hello, your order is ready for pickup at %1$s on %2$s. Please visit the store to collect your order.', 'woocommerce' ),
+						$pickup_store,
+						$pickup_date
+					);
+
+					// Send the email.
+					wp_mail( $customer_email, $subject, $message );
+				}
+			}
+		}
+	}
 }
