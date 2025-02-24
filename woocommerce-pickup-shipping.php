@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name: WooCommerce Pickup Shipping Method
  * Description: Adds a custom "Pickup" shipping method to WooCommerce with store location and pickup date selection.
@@ -98,28 +99,27 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 	 * @return void
 	 */
 	function add_pickup_store_selection() {
-		// if ($method->id === 'pickup_shipping_method') {
-			// Get saved stores from the database.
-			$stores = get_option( 'pickup_shipping_stores', array() );
 
-			if ( ! empty( $stores ) ) {
-				echo '<div class="pickup-store-selection">';
-				echo '<label for="pickup-store">' . __( 'Select Store:', 'woocommerce' ) . '</label>';
-				echo '<select name="pickup_store" id="pickup-store" required>';
-				echo '<option value="">' . __( 'Select a store', 'woocommerce' ) . '</option>';
-				foreach ( $stores as $store ) {
-					echo '<option value="' . esc_attr( $store['name'] ) . '">' . esc_html( $store['name'] ) . '</option>';
-				}
-				echo '</select>';
-				echo '</div>';
+		// Get saved stores from the database.
+		$stores = get_option( 'pickup_shipping_stores', array() );
+
+		if ( ! empty( $stores ) ) {
+			echo '<div class="pickup-store-selection">';
+			echo '<label for="pickup-store">' . esc_html_e( 'Select Store:', 'woocommerce' ) . '</label>';
+			echo '<select name="pickup_store" id="pickup-store" required>';
+			echo '<option value="">' . esc_html_e( 'Select a store', 'woocommerce' ) . '</option>';
+			foreach ( $stores as $store ) {
+				echo '<option value="' . esc_attr( $store['name'] ) . '">' . esc_html( $store['name'] ) . '</option>';
 			}
+			echo '</select>';
+			echo '</div>';
+		}
 
 			// Add pickup date field.
-			echo '<div class="pickup-date-selection">';
-			echo '<label for="pickup-date">' . __( 'Pickup Date:', 'woocommerce' ) . '</label>';
-			echo '<input type="date" name="pickup_date" id="pickup-date" min="' . date( 'Y-m-d' ) . '" max="' . date( 'Y-m-d', strtotime( '+1 month' ) ) . '" required>';
-			echo '</div>';
-		// }
+		echo '<div class="pickup-date-selection">';
+		echo '<label for="pickup-date">' . esc_html_e( 'Pickup Date:', 'woocommerce' ) . '</label>';
+		echo '<input type="date" name="pickup_date" id="pickup-date" min="' . gmdate( 'Y-m-d' ) . '" max="' . gmdate( 'Y-m-d', strtotime( '+1 month' ) ) . '" required>';
+		echo '</div>';
 	}
 
 	// Validate Pickup Store and Date Selection( need to fix bug ).
@@ -136,17 +136,11 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 	 * @return void
 	 */
 	function validate_pickup_store_and_date() {
-		// Check if the pickup shipping method is selected.
-		if ( isset($_POST['shipping_method'] ) ) {
-			$chosen_shipping_method = $_POST['shipping_method'][0]; // Get the first selected shipping method.
-			if ( 'pickup_shipping_method' === $chosen_shipping_method ) {
-				if ( empty($_POST['pickup_store'] ) ) {
-					wc_add_notice(__('Please select a pickup store.', 'woocommerce'), 'error' );
-				}
-				if ( empty($_POST['pickup_date'] ) ) {
-					wc_add_notice(__( 'Please select a pickup date.', 'woocommerce'), 'error' );
-				}
-			}
+		if ( empty( $_POST['pickup_store'] ) ) {
+			wc_add_notice( 'Please select a pickup Store.', 'error' );
+		}
+		if ( empty( $_POST['pickup_date'] ) ) {
+			wc_add_notice( 'Please select a pickup Date.', 'error' );
 		}
 	}
 
@@ -164,8 +158,8 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 	 * @return void
 	 */
 	function save_pickup_store_and_date( $order_id ) {
-		if ( isset($_POST['pickup_store'] ) ) {
-			update_post_meta($order_id, '_pickup_store', sanitize_text_field( $_POST['pickup_store'] ) );
+		if ( isset( $_POST['pickup_store'] ) ) {
+			update_post_meta( $order_id, '_pickup_store', sanitize_text_field( $_POST['pickup_store'] ) );
 		}
 		if ( isset($_POST['pickup_date'] ) ) {
 			update_post_meta( $order_id, '_pickup_date', sanitize_text_field( $_POST['pickup_date'] ) );
@@ -191,15 +185,15 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 		$pickup_date = get_post_meta( $order->get_id(), '_pickup_date', true );
 
 		if ( $pickup_store ) {
-			echo '<p><strong>' . __( 'Pickup Store:', 'woocommerce' ) . '</strong> ' . esc_html( $pickup_store ) . '</p>';
+			echo '<p><strong>' . esc_html( 'Pickup Store:', 'woocommerce' ) . '</strong> ' . esc_html( $pickup_store ) . '</p>';
 		}
 		if ( $pickup_date ) {
-			echo '<p><strong>' . __( 'Pickup Date:', 'woocommerce' ) . '</strong> ' . esc_html( $pickup_date ) . '</p>';
+			echo '<p><strong>' . esc_html( 'Pickup Date:', 'woocommerce' ) . '</strong> ' . esc_html( $pickup_date ) . '</p>';
 		}
 	}
- 
-	// Display in customer order details
-	add_action('woocommerce_order_details_after_order_table', 'display_pickup_details_in_order', 10, 1);
+
+	// Display in customer order details.
+	add_action( 'woocommerce_order_details_after_order_table', 'display_pickup_details_in_order', 10, 1 );
 	/**
 	 * Displays the pickup store and pickup date in the WooCommerce order details page.
 	 *
@@ -216,10 +210,10 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 		$pickup_date = get_post_meta( $order->get_id(), '_pickup_date', true );
 
 		if ( $pickup_store ) {
-			echo '<p><strong>' . __( 'Pickup Store:', 'woocommerce' ) . '</strong> ' . esc_html( $pickup_store ) . '</p>';
+			echo '<p><strong>' . esc_html( 'Pickup Store:', 'woocommerce' ) . '</strong> ' . esc_html( $pickup_store ) . '</p>';
 		}
 		if ( $pickup_date ) {
-			echo '<p><strong>' . __( 'Pickup Date:', 'woocommerce' ) . '</strong> ' . esc_html( $pickup_date ) . '</p>';
+			echo '<p><strong>' . esc_html( 'Pickup Date:', 'woocommerce' ) . '</strong> ' . esc_html( $pickup_date ) . '</p>';
 		}
 	}
 
@@ -257,4 +251,86 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 		return $fields;
 	}
 
+
+
+	// Add Google Maps embed using share link on checkout page.
+	add_action( 'woocommerce_after_checkout_billing_form', 'display_pickup_store_mini_map', 12 );
+	/**
+	 * Displays a mini Google Map for the selected pickup store on checkout using a share link.
+	 *
+	 * @return void
+	 */
+	function display_pickup_store_mini_map() {
+
+		$stores = get_option( 'pickup_shipping_stores', array() );
+		if ( empty( $stores ) ) {
+			return;
+		}
+
+		$api_key = 'YOUR_GOOGLE_MAPS_API_KEY'; // Replace with your API key.
+		wp_enqueue_script( 'google-maps', 'https://maps.googleapis.com/maps/api/js?key=' . $api_key, array(), null, true );
+
+		?>
+		<div class="pickup-store-map">
+			<p><strong><?php esc_html_e( 'Pickup Location:', 'woocommerce' ); ?></strong></p>
+			<div id="pickup-map-link" style="margin-bottom: 10px;"></div>
+			<div id="pickup-map" style="width: 100%; height: 200px;"></div>
+		</div>
+
+		<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				var stores = <?php echo json_encode( $stores ); ?>;
+				var $pickupStore = $('#pickup-store');
+				var $mapLinkDiv = $('#pickup-map-link');
+
+				function updateMap() {
+					var selectedStore = $pickupStore.val();
+					if (!selectedStore) {
+						$mapLinkDiv.empty();
+						$('#pickup-map').empty();
+						return;
+					}
+
+					var store = stores.find(function(s) {
+						return s.name === selectedStore;
+					});
+
+					if (store && store.location) {
+						$mapLinkDiv.html('<a href="' + store.location + '" target="_blank"><?php esc_html_e( 'View on Google Maps', 'woocommerce' ); ?></a>' );
+
+						// Fetch coordinates from the share link via AJAX or pre-resolve (simplified here)
+						$.getJSON('https://api.allorigins.win/get?url=' + encodeURIComponent(store.location), function(data) {
+							// This is a basic proxy; ideally, resolve server-side with API key
+							var url = data.contents.match(/@([-.\d]+),([-.\d]+)/);
+							if (url) {
+								var lat = url[1];
+								var lng = url[2];
+								var map = new google.maps.Map(document.getElementById('pickup-map'), {
+									center: { lat: parseFloat(lat), lng: parseFloat(lng) },
+									zoom: 15,
+									mapTypeId: 'roadmap'
+								});
+								new google.maps.Marker({
+									position: { lat: parseFloat(lat), lng: parseFloat(lng) },
+									map: map
+								});
+							} else {
+								$('#pickup-map').html('<?php esc_html_e( 'Unable to load map', 'woocommerce' ); ?>');
+							}
+						}).fail(function() {
+							$('#pickup-map').html('<?php esc_html_e( 'Unable to load map', 'woocommerce' ); ?>' );
+						});
+					} else {
+						$mapLinkDiv.html( '<?php esc_html_e( 'Location not available', 'woocommerce' ); ?>' );
+						$('#pickup-map').html( '<?php esc_html_e( 'Map not available', 'woocommerce' ); ?>' );
+					}
+				}
+
+				updateMap();
+				$pickupStore.on('change', updateMap);
+			});
+		</script>
+		<?php
+	}
+	// google map ends here.
 }
