@@ -350,7 +350,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 	 */
 	function schedule_pickup_reminder_cron() {
 		if ( ! wp_next_scheduled( 'send_pickup_reminder_emails_event' ) ) {
-			wp_schedule_event( time(), 'daily', 'send_pickup_reminder_emails_event' );
+			wp_schedule_event( time(), 'every_minute', 'send_pickup_reminder_emails_event' );
 		}
 	}
 
@@ -391,14 +391,11 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 		// Set the time zone.
 		$timezone = wp_timezone();
 		$today = new DateTime( 'now', $timezone );
-		$pickup_date = $today->modify( '+1 day' )->format( 'Y-m-d' );
+		$pickup_date_match = $today->modify( '+1 day' )->format( 'Y-m-d' );
 
 		$args = array(
 			'limit' => -1, // Get all orders.
 			'status' => array( 'processing', 'completed' ), // Only process orders that are not cancelled or failed.
-			'meta_key' => '_pickup_date',
-			'meta_value' => $pickup_date,
-			'meta_compare' => '=',
 		);
 
 		$orders = wc_get_orders( $args );
@@ -408,9 +405,8 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 				$customer_email = $order->get_billing_email();
 				$pickup_store = get_post_meta( $order->get_id(), '_pickup_store', true );
 				$pickup_date = get_post_meta( $order->get_id(), '_pickup_date', true );
-
-				if ( $customer_email && $pickup_store && $pickup_date ) {
-					$subject = esc_html_e( 'Reminder: Your Order is Ready for Pickup', 'woocommerce' );
+				if ( $customer_email && $pickup_store && $pickup_date && $pickup_date == $pickup_date_match ) {
+					$subject = esc_html( 'Reminder: Your Order is Ready for Pickup', 'woocommerce' );
 					$message = sprintf(
 						esc_html( 'Hello, your order is ready for pickup at %1$s on %2$s. Please visit the store to collect your order.', 'woocommerce' ),
 						$pickup_store,
@@ -423,4 +419,5 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 			}
 		}
 	}
+
 }
