@@ -1,0 +1,28 @@
+.ticker-notifications-container {
+    position: fixed;
+    top: 200px;
+    right: 20px;
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 1000;
+    max-width: 300px;
+    overflow: hidden;
+}
+
+.ticker-notifications-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.ticker-notifications-list li {
+    display: none;
+    padding: 5px 0;
+    transition: opacity 0.3s ease;
+}
+
+.ticker-notifications-list li.active {
+    display: block;
+    opacity: 1;
+}
