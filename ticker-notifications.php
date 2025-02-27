@@ -20,3 +20,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'TICKER_NOTIFICATIONS_VERSION', '1.0' );
 define( 'TICKER_NOTIFICATIONS_PATH', plugin_dir_path( __FILE__ ) );
 define( 'TICKER_NOTIFICATIONS_URL', plugin_dir_url( __FILE__ ) );
+
+// Include the required files.
+require_once TICKER_NOTIFICATIONS_PATH . 'includes/class-ticker-notifications-activation.php';
+
+
+// Activation and deactivation hooks.
+register_activation_hook( __FILE__, array( 'Ticker_Notifications_Activation', 'activate' ) );
+register_deactivation_hook( __FILE__, array( 'Ticker_Notifications_Activation', 'deactivate' ) );
