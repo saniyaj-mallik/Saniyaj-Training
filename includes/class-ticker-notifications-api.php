@@ -1,9 +1,36 @@
 <?php
+/**
+ * Ticker notification Rest Api.
+ *
+ * @package Ticker Notification
+ * @since 1.0.0
+ */
+
+/**
+ * Ticker Notifications API Class
+ *
+ * Handles REST API endpoints for managing ticker notifications in WordPress.
+ * Provides functionality to receive, validate, store, and manage notification data.
+ *
+ * @package Ticker_Notifications
+ * @since 1.0.0
+ * @author xAI
+ */
 class Ticker_Notifications_API {
+	/**
+	 * Initializes the API by hooking into WordPress REST API initialization.
+	 *
+	 * @return void
+	 */
 	public static function init() {
 		add_action( 'rest_api_init', array( __CLASS__, 'register_routes' ) );
 	}
 
+	/**
+	 * Registers REST API routes for notification handling.
+	 *
+	 * @return void
+	 */
 	public static function register_routes() {
 		register_rest_route(
 			'ticker-notifications/v1',
@@ -16,6 +43,15 @@ class Ticker_Notifications_API {
 		);
 	}
 
+	/**
+	 * Handles incoming notification requests.
+	 *
+	 * Validates authentication token, processes notification data,
+	 * stores it in the database, and manages storage limits.
+	 *
+	 * @param WP_REST_Request $request The REST API request object.
+	 * @return array|WP_Error Response array on success or WP_Error on failure.
+	 */
 	public static function handle_notification( $request ) {
 		$options = get_option( 'ticker_notifications_options', array() );
 		$auth_token = isset( $options['auth_token'] ) ? $options['auth_token'] : '';
@@ -76,7 +112,13 @@ class Ticker_Notifications_API {
 			'message' => 'Notification stored successfully',
 		);
 	}
-
+	/**
+	 * Generates a formatted notification message based on event type and data.
+	 *
+	 * @param string $event_type The type of event (item_sold, item_dispatched, item_delivered).
+	 * @param array  $data       The notification data containing field values.
+	 * @return string The formatted notification message.
+	 */
 	private static function generate_notification_message( $event_type, $data ) {
 		$options = get_option( 'ticker_notifications_options', array() );
 		$template = '';
