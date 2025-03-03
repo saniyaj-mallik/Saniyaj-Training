@@ -1,10 +1,12 @@
 .notifications-container {
     max-width: 400px;
-    margin: 20px;
+    margin: 0px 20px;
     font-family: Arial, sans-serif;
+
 }
-.notifications-container h3{
-    padding: 12px 15px;
+.container-heading{
+    padding: 0px 20px;
+    margin: 0;
 }
 
 .ticker-notifications-list {
@@ -17,21 +19,19 @@
 }
 
 .notification-item {
-    padding: 12px 15px;
+    padding: 12px 10px;
     border-bottom: 1px solid #eee;
     display: flex;
     justify-content: space-between;
     align-items: center;
     min-height: 50px;
+    min-width: 250px;
     transition: background-color 0.2s ease;
 }
 
+
 .notification-item:last-child {
     border-bottom: none;
-}
-
-.notification-item:hover {
-    background-color: #f0f0f0;
 }
 
 .notification-text {
@@ -40,19 +40,20 @@
     flex-grow: 1;
     margin-right: 10px;
 }
-
-.notification-time {
-    color: #666;
-    font-size: 12px;
-    font-style: italic;
-    white-space: nowrap;
-}
+.notification-time{
+    background-color: blue;
+    color: white !important;
+    border-radius: 8px;
+    padding: 4px 6px;
+    font-size: 12px !important;
+ }
 
 /* Responsive adjustments */
 @media (max-width: 480px) {
     .notifications-container {
         max-width: 100%;
-        margin: 10px;
+        min-width: 200px;
+        /* margin: 10px; */
     }
     
     .notification-item {
