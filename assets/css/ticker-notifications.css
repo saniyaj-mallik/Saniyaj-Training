@@ -1,28 +1,41 @@
+/* Container styling */
 .ticker-notifications-container {
-    position: fixed;
-    top: 200px;
-    right: 20px;
-    background: #fff;
-    border: 1px solid #ccc;
-    padding: 10px;
-    z-index: 1000;
-    max-width: 300px;
+    width: 100%;
     overflow: hidden;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+/* List styling */
 .ticker-notifications-list {
     list-style: none;
-    padding: 0;
     margin: 0;
+    padding: 0;
 }
 
+/* Notification item styling */
 .ticker-notifications-list li {
-    display: none;
-    padding: 5px 0;
-    transition: opacity 0.3s ease;
+    padding: 8px 10px;
+    margin-bottom: 5px;
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    font-size: 14px;
+    color: #333;
+    /* animation: slideIn 0.5s ease-out; */
 }
 
-.ticker-notifications-list li.active {
-    display: block;
-    opacity: 1;
+/* Animation for new notifications */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

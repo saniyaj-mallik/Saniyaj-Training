@@ -58,12 +58,12 @@ class Ticker_Notifications_API {
 
 		// Validate authentication token from headers.
 		$header_token = $request->get_header( 'Authorization' );
-		if ( empty( $header_token ) || 'Bearer ' . $auth_token !== $header_token ) {
+		if ( empty( $header_token ) || $auth_token !== $header_token ) {
 			return new WP_Error( 'invalid_token', 'Invalid or missing authentication token', array( 'status' => 401 ) );
 		}
 
 		$data = $request->get_params();
-		$required_fields = array( 'date_time', 'event_type', 'product_name' );
+		$required_fields = array( 'event_type', 'product_name', 'user_name', 'price', 'company_location', 'shipping_address' );
 		foreach ( $required_fields as $field ) {
 			if ( empty( $data[ $field ] ) ) {
 				return new WP_Error( 'missing_data', 'Missing required field: ' . $field, array( 'status' => 400 ) );
@@ -73,13 +73,12 @@ class Ticker_Notifications_API {
 		// Store notification in database.
 		global $wpdb;
 		$table_name = $wpdb->prefix . 'ticker_notifications';
-		$notification_message = self::generate_notification_message( $data['event_type'], $data );
 
 		$result = $wpdb->insert(
 			$table_name,
 			array(
-				'notification_time' => $data['date_time'],
 				'event_type' => $data['event_type'],
+				'user_name' => $data['user_name'],
 				'product_name' => $data['product_name'],
 				'product_hyperlink' => isset( $data['product_hyperlink'] ) ? $data['product_hyperlink'] : null,
 				'price' => isset( $data['price'] ) ? floatval( $data['price'] ) : null,
@@ -89,20 +88,12 @@ class Ticker_Notifications_API {
 				'supplier_amount' => isset( $data['supplier_amount'] ) ? floatval( $data['supplier_amount'] ) : null,
 				'employee_initials' => isset( $data['employee_initials'] ) ? $data['employee_initials'] : null,
 				'authorization_group' => isset( $data['authorization_group'] ) ? $data['authorization_group'] : null,
-				'notification_message' => $notification_message,
 			),
-			array( '%s', '%s', '%s', '%s', '%f', '%s', '%s', '%s', '%f', '%s', '%s', '%s' )
+			array( '%s', '%s', '%s', '%s', '%f', '%s', '%s', '%s', '%f', '%s', '%s' )
 		);
 
 		if ( false === $result ) {
 			return new WP_Error( 'storage_error', 'Failed to store notification', array( 'status' => 500 ) );
-		}
-
-		// Manage notification limit.
-		$store_limit = isset( $options['store_last_n'] ) ? $options['store_last_n'] : 10;
-		$count = $wpdb->get_var( "SELECT COUNT(*) FROM $table_name" );
-		if ( $count > $store_limit ) {
-			$wpdb->query( $wpdb->prepare( "DELETE FROM $table_name ORDER BY notification_time ASC LIMIT %d", $count - $store_limit ) );
 		}
 
 		update_option( 'ticker_notifications_last_updated', current_time( 'mysql' ) );
@@ -110,41 +101,7 @@ class Ticker_Notifications_API {
 		return array(
 			'success' => true,
 			'message' => 'Notification stored successfully',
+			'result' => $result,
 		);
-	}
-	/**
-	 * Generates a formatted notification message based on event type and data.
-	 *
-	 * @param string $event_type The type of event (item_sold, item_dispatched, item_delivered).
-	 * @param array  $data       The notification data containing field values.
-	 * @return string The formatted notification message.
-	 */
-	private static function generate_notification_message( $event_type, $data ) {
-		$options = get_option( 'ticker_notifications_options', array() );
-		$template = '';
-
-		switch ( $event_type ) {
-			case 'item_sold':
-				$template = $options['notification_sold'] ?? '{product_name} sold to {user_name} at {company_location}';
-				break;
-			case 'item_dispatched':
-				$template = $options['notification_dispatched'] ?? '{product_name} dispatched to {user_name} at {shipping_address}';
-				break;
-			case 'item_delivered':
-				$template = $options['notification_delivered'] ?? '{product_name} delivered to {user_name} at {shipping_address}';
-				break;
-			default:
-				return '';
-		}
-
-		// Replace placeholders with actual data.
-		$placeholders = array(
-			'{product_name}' => $data['product_name'],
-			'{user_name}' => isset( $data['user_name'] ) ? $data['user_name'] : 'Unknown',
-			'{company_location}' => isset( $data['company_location'] ) ? $data['company_location'] : 'Unknown',
-			'{shipping_address}' => isset( $data['shipping_address'] ) ? $data['shipping_address'] : 'Unknown',
-		);
-
-		return str_replace( array_keys( $placeholders ), array_values( $placeholders ), $template );
 	}
 }

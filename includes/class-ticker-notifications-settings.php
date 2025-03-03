@@ -190,6 +190,21 @@ class Ticker_Notifications_Settings {
 		?>
 		<input type="text" name="ticker_notifications_options[<?php echo esc_attr( $args['name'] ); ?>]" value="<?php echo esc_attr( $value ); ?>" placeholder="<?php echo esc_attr( $args['placeholder'] ); ?>" class="regular-text">
 		<?php
+		// Add a "Generate Token" button for the auth_token field.
+		if ( 'auth_token' === $args['name'] ) {
+			?>
+			<button type="button" id="generate-token-button" class="button">Generate Token</button>
+			<script>
+				document.getElementById('generate-token-button').addEventListener('click', function() {
+					// Generate a random token (32 characters long)
+					var token = Math.random().toString(36).substring(2) + Math.random().toString(36).substring(2);
+					token = token.substring(0, 32); // Ensure it's 32 characters long
+					// Set the generated token to the input field
+					document.querySelector('input[name="ticker_notifications_options[auth_token]"]').value = token;
+				});
+			</script>
+			<?php
+		}
 	}
 
 	/**

@@ -32,8 +32,9 @@ class Ticker_Notifications_Activation {
 
 		$sql = "CREATE TABLE $table_name (
             id bigint(20) NOT NULL AUTO_INCREMENT,
-            notification_time datetime NOT NULL,
+            notification_time datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
             event_type varchar(50) NOT NULL,
+            user_name varchar(50) NOT NULL,
             product_name varchar(255) NOT NULL,
             product_hyperlink varchar(255) DEFAULT NULL,
             price decimal(10,2) DEFAULT NULL,
@@ -43,7 +44,7 @@ class Ticker_Notifications_Activation {
             supplier_amount decimal(10,2) DEFAULT NULL,
             employee_initials varchar(10) DEFAULT NULL,
             authorization_group varchar(100) DEFAULT NULL,
-            notification_message text NOT NULL,
+            notification_message text DEFAULT NULL,
             PRIMARY KEY (id)
         ) $charset_collate;";
 
@@ -60,6 +61,7 @@ class Ticker_Notifications_Activation {
 			'randomize_order' => false,
 			'auth_token' => wp_generate_password( 32, false ),
 		);
+		add_option( 'ticker_notifications_options', $default_options );
 	}
 
 	/**
