@@ -112,6 +112,7 @@ function ticker_notifications_shortcode() {
 	ob_start();
 	?>
 	<div class="ticker-notifications-container">
+		<h3>Recent Orders</h3>
 		<ul class="ticker-notifications-list">
 			<!-- Notifications will be dynamically inserted here -->
 		</ul>

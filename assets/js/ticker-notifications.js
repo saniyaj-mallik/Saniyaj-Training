@@ -41,6 +41,16 @@ jQuery(document).ready(function ($) {
             };
         });
 
+        // Sort notifications by displayTime (newest at the top)
+        formattedNotifications.sort((a, b) => {
+            // Convert displayTime to a comparable format (e.g., timestamp)
+            const timeA = new Date(`1970-01-01T${a.displayTime}:00`).getTime();
+            const timeB = new Date(`1970-01-01T${b.displayTime}:00`).getTime();
+
+            // Sort in descending order (newest first)
+            return timeB - timeA;
+        });
+
         return formattedNotifications;
     }
 
@@ -52,36 +62,36 @@ jQuery(document).ready(function ($) {
                 action: 'fetch_ticker_notifications'
             },
             success: function (response) {
-                console.log(response); // Log the response for debugging
                 const processedNotifications = processNotifications(response);
 
                 if (processedNotifications && Array.isArray(processedNotifications)) {
-                    // Get all existing <li> elements
-                    const $listItems = $('.ticker-notifications-list li');
+                    const notificationList = $('.ticker-notifications-list');
+                    console.log(notificationList);
+                    notificationList.css('height', `${processedNotifications.length *110}`)
+                    // Clear existing notifications
+                    notificationList.empty();
 
-                    // Update the content of each <li> element
+                    // Add new notifications
                     processedNotifications.forEach((notification, index) => {
-                        if ($listItems[index]) {
-                            // Update the text content of the existing <li>
-                            $($listItems[index]).text(notification.displayMessage
-                            );
-                        } else {
-                            // If there are more notifications than <li> elements, append new ones
-                            $('.ticker-notifications-list').append('<li>' + notification.displayMessage
-                                + '</li>').hide().slideDown(200);
-                        }
-                    });
 
-                    // If there are fewer notifications than <li> elements, hide the extra ones
-                    if (response.length < $listItems.length) {
-                        $listItems.slice(response.length).hide().slideDown(200);
-                    }
+                        // Create new list item with notification content
+                        const newItem = $(`
+                            <li class="notification-item">
+                                <span class="notification-text">${notification.displayMessage}</span>
+                                <span class="notification-time">${notification.displayTime}</span>
+                            </li>
+                        `);
+                        notificationList.append(newItem);
+                        // Animate the new item
+                        newItem.hide().slideDown(200);
+                        
+                    });
                 } else {
-                    console.error('Invalid response format:', response);
+                    console.error('Invalid response format:', processedNotifications);
                 }
             },
             error: function (xhr, status, error) {
-                console.error('AJAX Error:', status, error); // Log any errors
+                console.error('AJAX Error:', status, error);
             },
             complete: function () {
                 // Schedule the next fetch after the duration
