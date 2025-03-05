@@ -67,7 +67,18 @@
 
 .item p {
     font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     color: var(--black);
+    font-weight: 600;
+}
+#buy-button{
+    background-color: var(--orange);
+    color: var(--black);
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
 }
 
 .item button {

@@ -169,7 +169,7 @@ function recent_items_shortcode( $atts ) {
 				$product = wc_get_product( get_the_ID() );
 				$price = $product->get_price_html();
 			} else {
-				$excerpt = wp_trim_words( get_the_excerpt(), 20, '...' ); // Limit words for posts.
+				$excerpt = wp_trim_words( get_the_excerpt(), 15, '...' ); // Limit words for posts.
 			}
 
 			$output .= '<div class="item">';
@@ -180,7 +180,7 @@ function recent_items_shortcode( $atts ) {
 			$output .= '<p>' . esc_html( $excerpt ) . '</p>'; // Display short description.
 
 			if ( 'product' === $post_type ) {
-				$output .= '<p><span>Price: ' . $price . '</span><span>buy</span></p>';
+				$output .= '<p> <span>' . $price . '</span> <a href="" id="buy-button"> buy </a> </p>';
 			} else {
 				$output .= '<button>Learn More</button>';
 			}
