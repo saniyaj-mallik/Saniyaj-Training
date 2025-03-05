@@ -1,0 +1,84 @@
+:root {
+    --orange: #FFA133;
+    --orangeShade: #ffa033df;
+    --black:black;
+}
+
+
+
+.recent-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    /* align-items: center; */
+    justify-content: center;
+}
+
+.recent-categories .category {
+    position: relative;
+    text-align: center;
+    width: 110px;
+}
+
+.recent-categories .category-image {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.recent-categories .category a {
+    text-decoration: none;
+    color: black;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+
+
+
+/* 2nd shortcode css */
+.recent-items {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.item {
+    padding: 10px;
+    width: 250px;
+}
+.item a{
+    text-decoration: none;
+}
+
+.item img {
+    max-width: 100%;
+    height: auto;
+}
+
+.item h3 {
+    font-size: 18px;
+    margin: 10px 0;
+    min-height: 50px;
+}
+
+.item p {
+    font-size: 16px;
+    color: var(--black);
+}
+
+.item button {
+    background-color: var(--orange);
+    color: var(--black);
+    border: none;
+    padding: 15px 70px;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+.item button:hover {
+    background-color: var(--orangeShade);
+}
