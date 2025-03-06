@@ -81,7 +81,8 @@
     text-decoration: none;
 }
 
-.item button {
+.item .post-learn-more {
+    text-decoration: none !important;
     background-color: var(--orange);
     color: var(--black);
     border: none;

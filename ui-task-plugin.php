@@ -180,9 +180,9 @@ function recent_items_shortcode( $atts ) {
 			$output .= '<p>' . esc_html( $excerpt ) . '</p>'; // Display short description.
 
 			if ( 'product' === $post_type ) {
-				$output .= '<p> <span>' . $price . '</span> <a href="" id="buy-button"> buy </a> </p>';
+				$output .= '<p> <span>' . $price . '</span> <a href="' . esc_url( $permalink ) . '" id="buy-button"> buy </a> </p>';
 			} else {
-				$output .= '<button>Learn More</button>';
+				$output .= '<a href="' . esc_url( $permalink ) . '" class="post-learn-more" >Learn More</a>';
 			}
 
 			$output .= '</div>';
