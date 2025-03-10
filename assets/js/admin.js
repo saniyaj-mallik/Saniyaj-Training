@@ -20,9 +20,9 @@ jQuery(document).ready(function($) {
         var index = $('.pickup-store-row').length;
         var row = '<div class="pickup-store-row" data-index="' + index + '">' +
             '<span class="drag-handle">☰</span>' +
-            '<input type="text" name="pickup_store_name[]" placeholder="Store Name">' +
-            '<input type="text" name="pickup_store_location[]" placeholder="Store Location (Google Maps URL)">' +
-            '<button type="button" class="button cancel-store-row">Cancel</button>' +
+            '<input type="text" required name="pickup_store_name[]" placeholder="Store Name">' +
+            '<input type="text" required name="pickup_store_location[]" placeholder="Store Location (Google Maps URL)">' +
+            '<button type="button" class="button cancel-store-row">Remove</button>' +
             '</div>';
         $('#pickup-stores').append(row);
     });

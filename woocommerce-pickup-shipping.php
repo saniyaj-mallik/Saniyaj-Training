@@ -106,7 +106,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 		if ( ! empty( $stores ) ) {
 			echo '<div class="pickup-store-selection">';
 			echo '<label for="pickup-store">' . esc_html_e( 'Select Store:', 'woocommerce' ) . '</label>';
-			echo '<select name="pickup_store" id="pickup-store" required>';
+			echo '<select name="pickup_store" id="pickup-store" required class="">';
 			echo '<option value="">' . esc_html_e( 'Select a store', 'woocommerce' ) . '</option>';
 			foreach ( $stores as $store ) {
 				echo '<option value="' . esc_attr( $store['name'] ) . '">' . esc_html( $store['name'] ) . '</option>';
@@ -161,7 +161,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 		if ( isset( $_POST['pickup_store'] ) ) {
 			update_post_meta( $order_id, '_pickup_store', sanitize_text_field( $_POST['pickup_store'] ) );
 		}
-		if ( isset($_POST['pickup_date'] ) ) {
+		if ( isset( $_POST['pickup_date'] ) ) {
 			update_post_meta( $order_id, '_pickup_date', sanitize_text_field( $_POST['pickup_date'] ) );
 		}
 	}
@@ -234,6 +234,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 	function add_pickup_details_to_email( $fields, $sent_to_admin, $order ) {
 		$pickup_store = get_post_meta( $order->get_id(), '_pickup_store', true );
 		$pickup_date = get_post_meta( $order->get_id(), '_pickup_date', true );
+		$pickup_location = get_post_meta( $order->get_id(), '_pickup_location', true );
 
 		if ( $pickup_store ) {
 			$fields['pickup_store'] = array(
@@ -245,6 +246,12 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 			$fields['pickup_date'] = array(
 				'label' => __( 'Pickup Date', 'woocommerce' ),
 				'value' => $pickup_date,
+			);
+		}
+		if ( $pickup_location ) {
+			$fields['pickup_location'] = array(
+				'label' => __( 'Pickup Location', 'woocommerce' ),
+				'value' => $pickup_location,
 			);
 		}
 
@@ -280,16 +287,19 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 		<script type="text/javascript">
 			jQuery(document).ready(function($) {
 				var stores = <?php echo json_encode( $stores ); ?>;
+				var $mapSection = $('.pickup-store-map');
 				var $pickupStore = $('#pickup-store');
 				var $mapLinkDiv = $('#pickup-map-link');
 
 				function updateMap() {
 					var selectedStore = $pickupStore.val();
 					if (!selectedStore) {
+						$mapSection.hide();
 						$mapLinkDiv.empty();
 						$('#pickup-map').empty();
 						return;
 					}
+					$mapSection.show();
 
 					var store = stores.find(function(s) {
 						return s.name === selectedStore;
